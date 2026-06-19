@@ -67,7 +67,7 @@
 
 <div>
     <label class="block text-xs font-semibold text-gray-500 dark:text-white/40 uppercase tracking-wider mb-2">
-        Catatan <span class="normal-case font-normal text-gray-400">(opsional)</span>
+        Notes <span class="normal-case font-normal text-gray-400">(optional)</span>
     </label>
     <textarea name="notes" rows="3" placeholder="Catatan khusus untuk kamar ini..."
               class="w-full px-4 py-2.5 rounded-xl text-sm border border-gray-200 dark:border-white/10

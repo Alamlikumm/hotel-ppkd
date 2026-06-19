@@ -142,7 +142,7 @@
                         <tr class="border-b border-gray-50">
                             <td class="py-3">
                                 <p class="font-medium text-gray-800">
-                                    Kamar {{ $booking->room->room_number }} — {{ $booking->room->roomType->name }}
+                                    Room {{ $booking->room->room_number }} — {{ $booking->room->roomType->name }}
                                 </p>
                                 <p class="text-xs text-gray-400 mt-0.5">
                                     {{ $booking->check_in->format('d M Y') }} s/d
@@ -150,7 +150,7 @@
                                 </p>
                             </td>
                             <td class="py-3 text-right text-sm text-gray-600">
-                                {{ $booking->total_nights }} malam
+                                {{ $booking->total_nights }} Night
                             </td>
                             <td class="py-3 text-right text-sm text-gray-600">
                                 Rp {{ number_format($booking->room->roomType->price_per_night, 0, ',', '.') }}

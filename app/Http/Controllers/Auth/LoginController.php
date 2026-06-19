@@ -3,19 +3,21 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class LoginController extends Controller
 {
-    //tampilkan halaman login
-    public function showLogin ()
+    // tampilkan halaman login
+    public function showLogin()
     {
-        if (Auth::check()){
+        if (Auth::check()) {
             return redirect()->route('admin.dashboard');
         }
-        return view ('auth.login');
+
+        return view('auth.login');
     }
 
     // Proces login
@@ -30,38 +32,39 @@ class LoginController extends Controller
 
         // langkah 2, cek apakah user aktif
 
-        $user = \App\Models\User::where('email', $request->email)->first();
+        $user = User::where('email', $request->email)->first();
 
-        if ($user && !$user->is_active)
-        {
-            return back ()-> withErrors([
-                'email' => 'Akun kamu nonaktif, hubungi super admin segera.', 
-            ])-> withInput();
+        if ($user && ! $user->is_active) {
+            return back()->withErrors([
+                'email' => 'Your Account Is Deactivated, Contact The Super Admin Immediately.',
+            ])->withInput();
         }
 
         // langkah 3, coba login
-        if(Auth::attempt($credentials, $request->boolean('remember'))){
-            $request->session()->regenerate(); //cegah session fixation attack
+        if (Auth::attempt($credentials, $request->boolean('remember'))) {
+            $request->session()->regenerate(); // cegah session fixation attack
 
-            Alert::success('Success','Login Berhasil');
+            Alert::success('Success', 'Login Successful');
+
             return redirect()->intended(route('admin.dashboard'));
         }
 
         // langkah 4, kalau gagal
 
-        return back ()->withErrors([
-            'email'=> 'Email atau password salah!'
-            ])->withInput($request->only('email'));
-        }
-        
-        public function logout(Request $request)
+        return back()->withErrors([
+            'email' => 'Incorrect Email or Password!',
+        ])->withInput($request->only('email'));
+    }
+
+    public function logout(Request $request)
     {
         Auth::logout();
-        
+
         $request->session()->invalidate();
         $request->session()->regenerateToken();
-        
-        Alert::success('Success','Logout Berhasil');
+
+        Alert::success('Success', 'Logout Successful');
+
         return redirect()->route('login');
     }
 }

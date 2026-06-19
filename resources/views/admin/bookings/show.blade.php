@@ -70,7 +70,7 @@
 
                 @if ($booking->notes)
                     <div class="mt-4 pt-4 border-t border-gray-50 dark:border-white/5">
-                        <p class="text-xs text-gray-400 dark:text-white/30 mb-1">Catatan</p>
+                        <p class="text-xs text-gray-400 dark:text-white/30 mb-1">Notes</p>
                         <p class="text-sm text-gray-600 dark:text-white/60">{{ $booking->notes }}</p>
                     </div>
                 @endif

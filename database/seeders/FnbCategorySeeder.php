@@ -10,8 +10,8 @@ class FnbCategorySeeder extends Seeder
     public function run(): void
     {
         $categories = [
-            ['name' => 'Makanan', 'icon' => '🍽️'],
-            ['name' => 'Minuman', 'icon' => '🥤'],
+            ['name' => 'Food', 'icon' => '🍽️'],
+            ['name' => 'Drink', 'icon' => '🥤'],
             ['name' => 'Dessert', 'icon' => '🍰'],
         ];
 

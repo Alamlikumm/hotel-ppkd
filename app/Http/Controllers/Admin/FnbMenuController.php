@@ -12,8 +12,8 @@ class FnbMenuController extends Controller
     public function index(Request $request)
     {
         $menus = FnbMenu::with('category')
-            ->when($request->category, fn($q) => $q->where('fnb_category_id', $request->category))
-            ->when($request->status, fn($q) => $q->where('status', $request->status))
+            ->when($request->category, fn ($q) => $q->where('fnb_category_id', $request->category))
+            ->when($request->status, fn ($q) => $q->where('status', $request->status))
             ->latest()->paginate(12);
 
         $categories = FnbCategory::all();
@@ -24,12 +24,12 @@ class FnbMenuController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'name'            => 'required|string|max:255',
-            'description'     => 'nullable|string',
+            'name' => 'required|string|max:255',
+            'description' => 'nullable|string',
             'fnb_category_id' => 'required|exists:fnb_categories,id',
-            'price'           => 'required|numeric|min:0',
-            'image'           => 'nullable|image|max:2048',
-            'status'          => 'required|in:available,unavailable',
+            'price' => 'required|numeric|min:0',
+            'image' => 'nullable|image|max:2048',
+            'status' => 'required|in:available,unavailable',
         ]);
 
         if ($request->hasFile('image')) {
@@ -38,18 +38,18 @@ class FnbMenuController extends Controller
 
         FnbMenu::create([...$validated, 'created_by' => auth()->id()]);
 
-        return back()->with('success', 'Menu berhasil ditambahkan.');
+        return back()->with('success', 'Menu Added Successfully.');
     }
 
     public function update(Request $request, FnbMenu $fnbMenu)
     {
         $validated = $request->validate([
-            'name'            => 'required|string|max:255',
-            'description'     => 'nullable|string',
+            'name' => 'required|string|max:255',
+            'description' => 'nullable|string',
             'fnb_category_id' => 'required|exists:fnb_categories,id',
-            'price'           => 'required|numeric|min:0',
-            'image'           => 'nullable|image|max:2048',
-            'status'          => 'required|in:available,unavailable',
+            'price' => 'required|numeric|min:0',
+            'image' => 'nullable|image|max:2048',
+            'status' => 'required|in:available,unavailable',
         ]);
 
         if ($request->hasFile('image')) {
@@ -58,12 +58,13 @@ class FnbMenuController extends Controller
 
         $fnbMenu->update($validated);
 
-        return back()->with('success', 'Menu berhasil diupdate.');
+        return back()->with('success', 'Menu Updated Successfully.');
     }
 
     public function destroy(FnbMenu $fnbMenu)
     {
         $fnbMenu->delete();
-        return back()->with('success', 'Menu berhasil dihapus.');
+
+        return back()->with('success', 'The Menu Has Been Successfully Deleted.');
     }
 }

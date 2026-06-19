@@ -60,10 +60,10 @@
                             <div class="flex items-start justify-between mb-3">
                                 <div>
                                     <div class="text-2xl font-bold text-white">{{ $room->room_number }}</div>
-                                    <div class="text-xs text-white/30 mt-0.5">Lantai {{ $room->floor }}</div>
+                                    <div class="text-xs text-white/30 mt-0.5">Floor {{ $room->floor }}</div>
                                 </div>
                                 <span class="text-xs px-2 py-1 rounded-lg bg-purple-500/20 text-black-300 font-medium">
-                                    Tersedia
+                                    Available
                                 </span>
                             </div>
 

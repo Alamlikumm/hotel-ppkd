@@ -89,7 +89,7 @@
                                {{ $review->is_published
                                   ? 'border-green-200 dark:border-green-500/20 text-green-600 dark:text-green-400 hover:bg-green-50 dark:hover:bg-green-500/10'
                                   : 'border-gray-200 dark:border-white/10 text-gray-500 dark:text-white/30 hover:bg-gray-50 dark:hover:bg-white/5' }}">
-                    {{ $review->is_published ? '✓ Dipublikasikan' : '○ Disembunyikan' }}
+                    {{ $review->is_published ? '✓ Published' : '○ Hidden' }}
                 </button>
             </form>
         </div>

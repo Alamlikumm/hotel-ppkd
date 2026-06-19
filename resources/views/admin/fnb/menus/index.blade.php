@@ -31,9 +31,9 @@
             <select name="status" onchange="this.form.submit()" class="text-sm px-3 py-2 rounded-xl border border-gray-200 dark:border-white/10
                            bg-white dark:bg-white/5 text-gray-700 dark:text-white/70
                            focus:outline-none focus:ring-2 focus:ring-purple-500/30">
-                <option value="" class="text-purple-500">Semua Status</option>
-                <option value="available" {{ request('status') == 'available' ? 'selected' : '' }}>Tersedia</option>
-                <option value="unavailable" {{ request('status') == 'unavailable' ? 'selected' : '' }}>Habis</option>
+                <option value="" class="text-purple-500">All Status</option>
+                <option value="available" {{ request('status') == 'available' ? 'selected' : '' }}>Available</option>
+                <option value="unavailable" {{ request('status') == 'unavailable' ? 'selected' : '' }}>Out of stock</option>
             </select>
         </form>
     </div>
@@ -56,9 +56,9 @@
                     @endif
                     <span class="absolute top-3 right-3 text-xs px-2.5 py-1 rounded-full font-medium
                                  {{ $menu->status === 'available'
-                ? 'bg-green-500 text-white'
-                : 'bg-red-500 text-white' }}">
-                        {{ $menu->status === 'available' ? 'Tersedia' : 'Habis' }}
+                 ? 'bg-green-500 text-white'
+                 : 'bg-red-500 text-white' }}">
+                        {{ $menu->status === 'available' ? 'Available' : 'Out of stock' }}
                     </span>
                 </div>
                 {{-- Content --}}
@@ -81,7 +81,7 @@
                                 </svg>
                             </button>
                             <form method="POST" action="{{ route('admin.fnb-menus.destroy', $menu) }}"
-                                onsubmit="return confirm('Hapus menu ini?')">
+                                onsubmit="return confirm('Delete this menu?')">
                                 @csrf @method('DELETE')
                                 <button type="submit"
                                     class="p-1.5 rounded-lg text-gray-400 hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-500/10 transition-colors duration-150">

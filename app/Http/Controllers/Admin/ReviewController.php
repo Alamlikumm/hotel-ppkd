@@ -26,16 +26,17 @@ class ReviewController extends Controller
 
         $review->update([
             'admin_reply' => $request->admin_reply,
-            'replied_by'  => auth()->id(),
-            'replied_at'  => now(),
+            'replied_by' => auth()->id(),
+            'replied_at' => now(),
         ]);
 
-        return back()->with('success', 'Balasan berhasil disimpan.');
+        return back()->with('success', 'Reply Saved Successfully.');
     }
 
     public function togglePublish(Review $review)
     {
-        $review->update(['is_published' => !$review->is_published]);
-        return back()->with('success', 'Status ulasan berhasil diubah.');
+        $review->update(['is_published' => ! $review->is_published]);
+
+        return back()->with('success', 'Review Status Changed Successfully.');
     }
 }
