@@ -40,25 +40,21 @@
         .fade-up-3 { animation: fadeUp 0.6s ease 0.2s forwards; opacity: 0; }
         .fade-up-4 { animation: fadeUp 0.6s ease 0.3s forwards; opacity: 0; }
         .shimmer-text {
-            background: linear-gradient(90deg, #fff 0%, #C4B5FD 40%, #fff 60%, #A78BFA 100%);
-            background-size: 200% auto;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: shimmer 4s linear infinite;
+            color: #fff;
         }
         .pulse-ring::before {
             content: '';
             position: absolute;
             inset: -8px;
             border-radius: 50%;
-            border: 2px solid rgba(167,139,250,0.5);
+            border: 2px solid rgba(59,130,246,0.5);
             animation: pulse-ring 2s ease-out infinite;
         }
         .rotate-slow { animation: rotate-slow 20s linear infinite; }
         .input-group input:focus ~ label,
         .input-group input:not(:placeholder-shown) ~ label {
             transform: translateY(-22px) scale(0.78);
-            color: #A78BFA;
+            color: #3B82F6;
         }
         .input-group label {
             transition: all 0.2s ease;
@@ -66,42 +62,27 @@
         }
     </style>
 </head>
-<body class="h-full bg-[#0D0B1F] overflow-hidden">
+<body class="h-full bg-[#121214] overflow-hidden">
 
 {{-- ── Background ── --}}
-<div class="absolute inset-0">
-    {{-- Gradient base --}}
-    <div class="absolute inset-0 bg-gradient-to-br from-[#0D0B1F] via-[#080518] to-[#0D0B1F]"></div>
-
-    {{-- Glow orbs --}}
-    <div class="absolute top-[-10%] left-[-5%] w-[500px] h-[500px] rounded-full float-1"
-         style="background: radial-gradient(circle, rgba(51, 21, 100, 0.35) 0%, transparent 70%)"></div>
-    <div class="absolute bottom-[-10%] right-[-5%] w-[600px] h-[600px] rounded-full float-2"
-         style="background: radial-gradient(circle, rgba(124,58,237,0.3) 0%, transparent 70%)"></div>
-    <div class="absolute top-[40%] right-[25%] w-[300px] h-[300px] rounded-full float-3"
-         style="background: radial-gradient(circle, rgba(139,92,246,0.2) 0%, transparent 70%)"></div>
-
-    {{-- Grid pattern --}}
-    <div class="absolute inset-0 opacity-[0.04]"
-         style="background-image: linear-gradient(rgb(130, 97, 227) 1px, transparent 1px),
-                linear-gradient(90deg, rgb(93, 80, 132) 1px, transparent 1px);
-                background-size: 60px 60px"></div>
+    {{-- Solid base --}}
+    <div class="absolute inset-0 bg-[#121214]"></div>
 
     {{-- Floating geometric shapes --}}
     <div class="absolute top-[15%] left-[10%] float-1 opacity-20">
-        <div class="w-16 h-16 border border-purple-400 rounded-xl rotate-12"></div>
+        <div class="w-16 h-16 border border-blue-500/30 rounded-xl rotate-12"></div>
     </div>
     <div class="absolute top-[60%] left-[6%] float-2 opacity-15">
-        <div class="w-10 h-10 border border-violet-300 rounded-full"></div>
+        <div class="w-10 h-10 border border-blue-400/20 rounded-full"></div>
     </div>
     <div class="absolute top-[30%] right-[8%] float-3 opacity-20">
-        <div class="w-20 h-20 border border-purple-300 rounded-2xl rotate-45"></div>
+        <div class="w-20 h-20 border border-blue-400/30 rounded-2xl rotate-45"></div>
     </div>
     <div class="absolute bottom-[20%] right-[12%] float-1 opacity-15">
-        <div class="w-8 h-8 bg-violet-500 rounded-lg rotate-12"></div>
+        <div class="w-8 h-8 bg-blue-600/30 rounded-lg rotate-12"></div>
     </div>
     <div class="absolute bottom-[35%] left-[15%] float-2 opacity-10">
-        <div class="w-24 h-24 border-2 border-purple-400 rounded-full rotate-slow"></div>
+        <div class="w-24 h-24 border-2 border-blue-500/20 rounded-full rotate-slow"></div>
     </div>
 </div>
 
@@ -112,12 +93,12 @@
     <div class="hidden lg:flex flex-col justify-between w-[55%] p-14">
         <div class="fade-up-1">
             <div class="flex items-center gap-3">
-                <div class="w-10 h-10 rounded-xl bg-purple-600/30 border border-purple-500/40
+                <div class="w-10 h-10 rounded-xl bg-blue-600/20 border border-blue-500/30
                             flex items-center justify-center">
                     <img src="{{ asset('images/logo.png') }}"
                          onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"
                          class="w-6 h-6 object-contain" alt="Logo">
-                    <span class="text-purple-300 text-lg hidden">✦</span>
+                    <span class="text-blue-300 text-lg hidden">✦</span>
                 </div>
                 <span class="text-white/80 text-sm font-medium tracking-widest uppercase">
                     Dido Hotel
@@ -127,7 +108,7 @@
 
         <div>
             <div class="fade-up-2">
-                <p class="text-purple-300 text-sm font-medium tracking-widest uppercase mb-4">
+                <p class="text-blue-450 text-sm font-medium tracking-widest uppercase mb-4">
                     Management System
                 </p>
                 <h1 class="text-5xl font-bold leading-tight mb-6">
@@ -173,17 +154,12 @@
         <div class="w-full max-w-[420px] fade-up-2">
 
             {{-- Card --}}
-            <div class="relative">
-                {{-- Card glow --}}
-                <div class="absolute -inset-1 rounded-3xl opacity-30 blur-xl"
-                     style="background: linear-gradient(135deg, #7C3AED, #010107)"></div>
-
                 <div class="relative bg-white/5 backdrop-blur-2xl border border-white/10
                             rounded-3xl p-8 shadow-2xl">
 
                     {{-- Logo mobile --}}
                     <div class="flex lg:hidden items-center gap-2 mb-8">
-                        <div class="w-8 h-8 rounded-lg bg-purple-600/40 border border-purple-500/40
+                        <div class="w-8 h-8 rounded-lg bg-blue-600/30 border border-blue-500/30
                                     flex items-center justify-center">
                             <img src="{{ asset('images/logo.jpg') }}"
                                  onerror="this.style.display='none'"
@@ -193,10 +169,8 @@
                     </div>
 
                     {{-- Header --}}
-                    <div class="mb-8">
                         <div class="relative inline-block mb-5 pulse-ring">
-                            <div class="w-14 h-14 rounded-2xl flex items-center justify-center"
-                                 style="background: linear-gradient(135deg, #7C3AED 0%, #04040c 100%)">
+                            <div class="w-14 h-14 rounded-2xl flex items-center justify-center bg-blue-600 border border-blue-500">
                                 <svg class="w-7 h-7 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
                                           d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
@@ -230,7 +204,7 @@
                             </label>
                             <div class="relative">
                                 <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                                    <svg class="w-4 h-4 text-purple-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <svg class="w-4 h-4 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                               d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
                                     </svg>
@@ -240,8 +214,8 @@
                                        class="w-full pl-11 pr-4 py-3 rounded-xl text-sm text-white
                                               bg-white/5 border border-white/10
                                               placeholder:text-white/20
-                                              focus:outline-none focus:border-purple-500/60
-                                              focus:bg-white/8 focus:ring-1 focus:ring-purple-500/30
+                                              focus:outline-none focus:border-blue-500/60
+                                              focus:bg-white/8 focus:ring-1 focus:ring-blue-500/30
                                               transition-all duration-200">
                             </div>
                         </div>
@@ -253,7 +227,7 @@
                             </label>
                             <div class="relative">
                                 <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                                    <svg class="w-4 h-4 text-purple-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <svg class="w-4 h-4 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                               d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
                                     </svg>
@@ -263,8 +237,8 @@
                                        class="w-full pl-11 pr-12 py-3 rounded-xl text-sm text-white
                                               bg-white/5 border border-white/10
                                               placeholder:text-white/20
-                                              focus:outline-none focus:border-purple-500/60
-                                              focus:bg-white/8 focus:ring-1 focus:ring-purple-500/30
+                                              focus:outline-none focus:border-blue-500/60
+                                              focus:bg-white/8 focus:ring-1 focus:ring-blue-500/30
                                               transition-all duration-200">
                                 <button type="button" onclick="togglePassword()"
                                         class="absolute inset-y-0 right-0 pr-4 flex items-center text-white/30 hover:text-white/60 transition-colors">
@@ -301,12 +275,8 @@
                         {{-- Submit --}}
                         <button type="submit"
                                 class="w-full py-3 rounded-xl text-sm font-semibold text-white
-                                       relative overflow-hidden group transition-all duration-300
-                                       focus:outline-none focus:ring-2 focus:ring-purple-500/50">
-                            <div class="absolute inset-0 transition-all duration-300"
-                                 style="background: linear-gradient(135deg, #0a0119 0%, #6D28D9 50%, #a03007 100%)"></div>
-                            <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                                 style="background: linear-gradient(135deg, #04010b 0%, #511c0b 50%, #4b3002 100%)"></div>
+                                       relative overflow-hidden group bg-blue-600 hover:bg-blue-700 transition-all duration-300
+                                       focus:outline-none focus:ring-2 focus:ring-blue-500/50">
                             <div class="absolute inset-0 opacity-0 group-active:opacity-30 transition-opacity duration-100 bg-white"></div>
                             <span class="relative flex items-center justify-center gap-2">
                                 <span>Login </span>

@@ -9,18 +9,12 @@
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </head>
 
-<body class="h-full bg-gray-50 dark:bg-[#0D0B1F] transition-colors duration-300">
+<body class="h-full bg-gray-50 dark:bg-[#121214] transition-colors duration-300">
 
     <div class="flex h-screen overflow-hidden">
 
         {{-- ══ SIDEBAR ══ --}}
-        <aside class="w-64 flex-shrink-0 flex flex-col relative"
-            style="background: linear-gradient(160deg, #060010 0%, #100000 40%, #040006 70%, #090116 100%)">
-
-            {{-- Glow effect --}}
-            <div class="absolute inset-0 opacity-30 pointer-events-none"
-                style="background: radial-gradient(ellipse at top left, rgba(28, 26, 26, 0.4) 0%, transparent 60%)">
-            </div>
+        <aside class="w-64 flex-shrink-0 flex flex-col relative bg-[#0e0e11] border-r border-zinc-800">
 
             {{-- Logo --}}
             <div class="relative px-5 py-5 border-b border-white/10">
@@ -36,7 +30,7 @@
                     </div>
                     <div>
                         <div class="text-white text-sm font-semibold leading-tight">Dido Hotel</div>
-                        <div class="text-purple-300 text-xs mt-0.5">Hotel Management</div>
+                        <div class="text-blue-400 text-xs mt-0.5">Hotel Management</div>
                     </div>
                 </div>
             </div>
@@ -46,14 +40,14 @@
             <nav class="relative flex-1 px-3 py-4 overflow-y-auto space-y-0.5">
 
                 {{-- Utama --}}
-                <p class="px-3 mb-2 text-[10px] font-semibold text-purple-300/60 uppercase tracking-widest">
+                <p class="px-3 mb-2 text-[10px] font-semibold text-blue-400/60 uppercase tracking-widest">
                     Main
                 </p>
                 <a href="{{ route('admin.dashboard') }}"
                     class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm transition-all duration-200
               {{ request()->routeIs('admin.dashboard')
                   ? 'bg-white/15 text-white font-medium shadow-sm'
-                  : 'text-purple-200/70 hover:bg-white/8 hover:text-white' }}">
+                  : 'text-blue-300/70 hover:bg-white/8 hover:text-white' }}">
                     <svg class="w-4 h-4 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"
                             d="M4 5a1 1 0 011-1h4a1 1 0 011 1v5a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM14 5a1 1 0 011-1h4a1 1 0 011 1v2a1 1 0 01-1 1h-4a1 1 0 01-1-1V5zM4 15a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1H5a1 1 0 01-1-1v-4zM14 13a1 1 0 011-1h4a1 1 0 011 1v6a1 1 0 01-1 1h-4a1 1 0 01-1-1v-6z" />
@@ -70,7 +64,7 @@
                         class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm transition-all duration-200
               {{ request()->routeIs('admin.rooms*')
                   ? 'bg-white/15 text-white font-medium'
-                  : 'text-purple-200/70 hover:bg-white/8 hover:text-white' }}">
+                  : 'text-blue-300/70 hover:bg-white/8 hover:text-white' }}">
                         <svg class="w-4 h-4 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"
                                 d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
@@ -81,7 +75,7 @@
                         class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm transition-all duration-200
               {{ request()->routeIs('admin.bookings*')
                   ? 'bg-white/15 text-white font-medium'
-                  : 'text-purple-200/70 hover:bg-white/8 hover:text-white' }}">
+                  : 'text-blue-300/70 hover:bg-white/8 hover:text-white' }}">
                         <svg class="w-4 h-4 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"
                                 d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
@@ -92,7 +86,7 @@
                         class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm transition-all duration-200
               {{ request()->routeIs('admin.reviews*')
                   ? 'bg-white/15 text-white font-medium'
-                  : 'text-purple-200/70 hover:bg-white/8 hover:text-white' }}">
+                  : 'text-blue-300/70 hover:bg-white/8 hover:text-white' }}">
                         <svg class="w-4 h-4 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"
                                 d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
@@ -103,14 +97,14 @@
 
                 {{-- F&B — tampil untuk superadmin & admin_fnb --}}
                 @if (in_array(auth()->user()->role->slug, ['superadmin', 'admin_fnb']))
-                    <p class="px-3 pt-4 mb-2 text-[10px] font-semibold text-purple-300/60 uppercase tracking-widest">
+                    <p class="px-3 pt-4 mb-2 text-[10px] font-semibold text-blue-400/60 uppercase tracking-widest">
                         F&amp;B
                     </p>
                     <a href="{{ route('admin.fnb-menus.index') }}"
                         class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm transition-all duration-200
               {{ request()->routeIs('admin.fnb-menus*')
                   ? 'bg-white/15 text-white font-medium'
-                  : 'text-purple-200/70 hover:bg-white/8 hover:text-white' }}">
+                  : 'text-blue-300/70 hover:bg-white/8 hover:text-white' }}">
                         <svg class="w-4 h-4 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"
                                 d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
@@ -121,7 +115,7 @@
                         class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm transition-all duration-200
               {{ request()->routeIs('admin.fnb-orders*')
                   ? 'bg-white/15 text-white font-medium'
-                  : 'text-purple-200/70 hover:bg-white/8 hover:text-white' }}">
+                  : 'text-blue-300/70 hover:bg-white/8 hover:text-white' }}">
                         <svg class="w-4 h-4 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"
                                 d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 14l2 2 4-4" />
@@ -132,14 +126,14 @@
 
                 {{-- Manajemen — superadmin only --}}
                 @if (auth()->user()->isSuperAdmin())
-                    <p class="px-3 pt-4 mb-2 text-[10px] font-semibold text-purple-300/60 uppercase tracking-widest">
+                    <p class="px-3 pt-4 mb-2 text-[10px] font-semibold text-blue-400/60 uppercase tracking-widest">
                         Management
                     </p>
                     <a href="{{ route('admin.users.index') }}"
                         class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm transition-all duration-200
               {{ request()->routeIs('admin.users*')
                   ? 'bg-white/15 text-white font-medium'
-                  : 'text-purple-200/70 hover:bg-white/8 hover:text-white' }}">
+                  : 'text-blue-300/70 hover:bg-white/8 hover:text-white' }}">
                         <svg class="w-4 h-4 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"
                                 d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
@@ -153,20 +147,19 @@
             {{-- User Footer --}}
             <div class="relative px-3 py-4 border-t border-white/10">
                 <div class="flex items-center gap-3 px-3 py-2 rounded-xl bg-white/5 mb-3">
-                    <div class="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 font-semibold text-xs text-white"
-                        style="background: linear-gradient(135deg, hsl(0, 0%, 0%), #2c0242)">
+                    <div class="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 font-semibold text-xs text-white bg-zinc-800 border border-zinc-700">
                         {{ strtoupper(substr(auth()->user()->name, 0, 2)) }}
                     </div>
                     <div class="flex-1 min-w-0">
                         <div class="text-sm font-medium text-white truncate">{{ auth()->user()->name }}</div>
-                        <div class="text-xs text-purple-300/60 truncate">{{ auth()->user()->role->name }}</div>
+                        <div class="text-xs text-blue-400/60 truncate">{{ auth()->user()->role->name }}</div>
                     </div>
                 </div>
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
                     <button type="submit"
                         class="w-full flex items-center justify-center gap-2 px-3 py-2 rounded-xl
-                               text-xs text-purple-300/70 hover:text-white hover:bg-white/10
+                               text-xs text-blue-300/70 hover:text-white hover:bg-white/10
                                transition-all duration-200 border border-white/10">
                         <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -199,7 +192,7 @@
                     <button
                         @click="dark = !dark; dark ? $el.closest('html').classList.add('dark') : $el.closest('html').classList.remove('dark'); localStorage.setItem('theme', dark ? 'dark' : 'light')"
                         class="w-9 h-9 rounded-xl flex items-center justify-center
-                               text-gray-400 dark:text-purple-300
+                               text-gray-400 dark:text-blue-400
                                hover:bg-gray-100 dark:hover:bg-white/10
                                border border-gray-100 dark:border-white/10
                                transition-all duration-200">
@@ -219,7 +212,7 @@
             </header>
 
             {{-- Content --}}
-            <main class="flex-1 overflow-y-auto p-6 bg-gray-50 dark:bg-[#0D0B1F]">
+            <main class="flex-1 overflow-y-auto p-6 bg-gray-50 dark:bg-[#121214]">
                 @if (session('success'))
                     <div
                         class="mb-5 flex items-center gap-3 px-4 py-3 rounded-xl

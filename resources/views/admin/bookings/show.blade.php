@@ -5,7 +5,7 @@
 @section('topbar-actions')
     <a href="{{ route('admin.bookings.invoice', $booking) }}"
         class="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-semibold text-white transition-all hover:opacity-90"
-        style="background: linear-gradient(135deg, #7C3AED, #09081d)">
+        style="background: #1e3a5f">
         <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                 d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
@@ -38,7 +38,7 @@
                         @php
                             $statusStyle = match ($booking->status) {
                                 'confirmed'
-                                    => 'bg-purple-50 dark:bg-purple-500/15 text-purple-700 dark:text-purple-300',
+                                    => 'bg-blue-50 dark:bg-blue-500/15 text-blue-700 dark:text-blue-300',
                                 'pending' => 'bg-amber-50 dark:bg-amber-500/15 text-amber-700 dark:text-amber-300',
                                 'checked_in' => 'bg-green-50 dark:bg-green-500/15 text-green-700 dark:text-green-300',
                                 'checked_out' => 'bg-gray-100 dark:bg-white/8 text-gray-600 dark:text-white/40',
@@ -91,7 +91,7 @@
                             @endif
                         </p>
                     </div>
-                    <span class="text-xl font-bold text-purple-600 dark:text-purple-400">
+                    <span class="text-xl font-bold text-blue-600 dark:text-blue-400">
                         Rp {{ number_format($grandTotal, 0, ',', '.') }}
                     </span>
                 </div>
@@ -103,7 +103,7 @@
                     <h3 class="text-sm font-semibold text-gray-800 dark:text-white">Order F&amp;B</h3>
                     <button onclick="document.getElementById('modal-fnb').classList.remove('hidden')"
                         class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium text-white hover:opacity-90 transition-opacity"
-                        style="background: linear-gradient(135deg, #150a28, #4F46E5)">
+                        style="background: #1d4ed8">
                         + Create Order
                     </button>
                 </div>
@@ -112,7 +112,7 @@
                     <div
                         class="mb-4 p-4 rounded-xl border border-gray-100 dark:border-white/8 bg-gray-50/50 dark:bg-white/2">
                         <div class="flex items-center justify-between mb-3">
-                            <span class="text-xs font-mono font-semibold text-purple-600 dark:text-purple-400">
+                            <span class="text-xs font-mono font-semibold text-blue-600 dark:text-blue-400">
                                 {{ $order->order_code }}
                             </span>
                             @php
@@ -136,7 +136,7 @@
                                             value="{{ $order->status === 'queue' ? 'processing' : 'done' }}">
                                         <button type="submit"
                                             class="text-xs px-2.5 py-1 rounded-lg text-white hover:opacity-90"
-                                            style="background: linear-gradient(135deg, #0b0514, #060614)">
+                                            style="background: #0f172a">
                                             {{ $order->status === 'queue' ? 'Proses' : 'Selesai' }}
                                         </button>
                                     </form>
@@ -156,7 +156,7 @@
                             @endforeach
                             <div class="flex justify-between text-sm pt-2 border-t border-gray-100 dark:border-white/5">
                                 <span class="font-semibold text-gray-700 dark:text-white/70">Subtotal</span>
-                                <span class="font-bold text-purple-600 dark:text-purple-400">
+                                <span class="font-bold text-blue-600 dark:text-blue-400">
                                     Rp {{ number_format($order->total_price, 0, ',', '.') }}
                                 </span>
                             </div>
@@ -179,7 +179,7 @@
                     <select name="status"
                         class="w-full px-3 py-2.5 rounded-xl text-sm border border-gray-200 dark:border-white/10
                                bg-white dark:bg-white/5 text-gray-800 dark:text-white
-                               focus:outline-none focus:ring-2 focus:ring-purple-500/30">
+                               focus:outline-none focus:ring-2 focus:ring-blue-500/30">
                         @foreach ([
             'pending' => 'Pending',
             'confirmed' => 'Confirmed',
@@ -194,7 +194,7 @@
                     </select>
                     <button type="submit"
                         class="w-full py-2.5 rounded-xl text-sm font-semibold text-white hover:opacity-90 transition-opacity"
-                        style="background: linear-gradient(135deg, #7C3AED, #4F46E5)">
+                        style="background: #1d4ed8">
                         Status Updates
                     </button>
                 </form>
@@ -202,8 +202,8 @@
 
             <a href="{{ route('admin.bookings.invoice', $booking) }}" target="_blank"
                 class="flex items-center justify-center gap-2 w-full py-3 rounded-xl text-sm font-medium
-                  border border-purple-200 dark:border-purple-500/30 text-purple-600 dark:text-purple-400
-                  hover:bg-purple-50 dark:hover:bg-purple-500/10 transition-colors duration-150">
+                  border border-blue-200 dark:border-blue-500/30 text-blue-600 dark:text-blue-400
+                  hover:bg-blue-50 dark:hover:bg-blue-500/10 transition-colors duration-150">
                 <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                         d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
@@ -245,7 +245,7 @@
                                     <div>
                                         <p class="text-sm font-medium text-gray-800 dark:text-white">{{ $menu->name }}
                                         </p>
-                                        <p class="text-xs text-purple-600 dark:text-purple-400">
+                                        <p class="text-xs text-blue-600 dark:text-blue-400">
                                             Rp {{ number_format($menu->price, 0, ',', '.') }}
                                         </p>
                                     </div>
@@ -259,9 +259,9 @@
                                             class="text-sm font-semibold text-gray-800 dark:text-white w-5 text-center">0</span>
                                         <button type="button"
                                             onclick="changeModalQty('modal_menu_{{ $menu->id }}', 1)"
-                                            class="w-7 h-7 rounded-lg border border-purple-200 dark:border-purple-500/30
-                                       text-purple-600 flex items-center justify-center text-sm font-bold
-                                       hover:bg-purple-50 dark:hover:bg-purple-500/10 transition-colors">+</button>
+                                            class="w-7 h-7 rounded-lg border border-blue-200 dark:border-blue-500/30
+                                       text-blue-600 flex items-center justify-center text-sm font-bold
+                                       hover:bg-blue-50 dark:hover:bg-blue-500/10 transition-colors">+</button>
                                         <input type="hidden"
                                             name="fnb_items[{{ $loop->parent->index * 100 + $loop->index }}][menu_id]"
                                             value="{{ $menu->id }}">
@@ -278,7 +278,7 @@
                 <div class="flex gap-3 pt-2 border-t border-gray-100 dark:border-white/8">
                     <button type="submit"
                         class="flex-1 py-2.5 rounded-xl text-sm font-semibold text-white hover:opacity-90"
-                        style="background: linear-gradient(135deg, #7C3AED, #4F46E5)">
+                        style="background: #1d4ed8">
                         Add To Invoice
                     </button>
                     <button type="button" onclick="document.getElementById('modal-fnb').classList.add('hidden')"

@@ -32,7 +32,7 @@ There Is An Input Error:
         <div class="bg-white dark:bg-white/4 border border-gray-100 dark:border-white/8 rounded-2xl p-6">
             <h3 class="text-sm font-semibold text-gray-800 dark:text-white mb-5 flex items-center gap-2">
                 <span class="w-6 h-6 rounded-lg flex items-center justify-center text-white text-xs font-bold"
-                      style="background: linear-gradient(135deg, #7C3AED, #4F46E5)">1</span>
+                      style="background: #1d4ed8">1</span>
                 Guest
             </h3>
             <div class="grid grid-cols-2 gap-4">
@@ -46,7 +46,7 @@ There Is An Input Error:
                                   {{ $errors->has('guest_name') ? 'border-red-400' : 'border-gray-200 dark:border-white/10' }}
                                   bg-white dark:bg-white/5 text-gray-800 dark:text-white
                                   placeholder:text-gray-300 dark:placeholder:text-white/20
-                                  focus:outline-none focus:ring-2 focus:ring-purple-500/30 transition duration-200">
+                                  focus:outline-none focus:ring-2 focus:ring-blue-500/30 transition duration-200">
                     @error('guest_name')
                     <p class="mt-1 text-xs text-red-500">{{ $message }}</p>
                     @enderror
@@ -62,7 +62,7 @@ There Is An Input Error:
                                   {{ $errors->has('guest_phone') ? 'border-red-400' : 'border-gray-200 dark:border-white/10' }}
                                   bg-white dark:bg-white/5 text-gray-800 dark:text-white
                                   placeholder:text-gray-300 dark:placeholder:text-white/20
-                                  focus:outline-none focus:ring-2 focus:ring-purple-500/30 transition duration-200">
+                                  focus:outline-none focus:ring-2 focus:ring-blue-500/30 transition duration-200">
                     @error('guest_phone')
                     <p class="mt-1 text-xs text-red-500">{{ $message }}</p>
                     @enderror
@@ -78,7 +78,7 @@ There Is An Input Error:
                                   {{ $errors->has('guest_email') ? 'border-red-400' : 'border-gray-200 dark:border-white/10' }}
                                   bg-white dark:bg-white/5 text-gray-800 dark:text-white
                                   placeholder:text-gray-300 dark:placeholder:text-white/20
-                                  focus:outline-none focus:ring-2 focus:ring-purple-500/30 transition duration-200">
+                                  focus:outline-none focus:ring-2 focus:ring-blue-500/30 transition duration-200">
                     @error('guest_email')
                     <p class="mt-1 text-xs text-red-500">{{ $message }}</p>
                     @enderror
@@ -90,7 +90,7 @@ There Is An Input Error:
         <div class="bg-white dark:bg-white/4 border border-gray-100 dark:border-white/8 rounded-2xl p-6">
             <h3 class="text-sm font-semibold text-gray-800 dark:text-white mb-5 flex items-center gap-2">
                 <span class="w-6 h-6 rounded-lg flex items-center justify-center text-white text-xs font-bold"
-                      style="background: linear-gradient(135deg, #7C3AED, #4F46E5)">2</span>
+                      style="background: #1d4ed8">2</span>
                 Room &amp; Date
             </h3>
             <div class="space-y-4">
@@ -102,7 +102,7 @@ There Is An Input Error:
                             class="w-full px-4 py-2.5 rounded-xl text-sm border
                                    {{ $errors->has('room_id') ? 'border-red-400' : 'border-gray-200 dark:border-white/10' }}
                                    bg-white dark:bg-white/5 text-gray-800 dark:text-white
-                                   focus:outline-none focus:ring-2 focus:ring-purple-500/30 transition duration-200">
+                                   focus:outline-none focus:ring-2 focus:ring-blue-500/30 transition duration-200">
                         <option value="">— Select An Available Room —</option>
                         @foreach($rooms as $room)
                         <option value="{{ $room->id }}"
@@ -131,7 +131,7 @@ There Is An Input Error:
                                class="w-full px-4 py-2.5 rounded-xl text-sm border
                                       {{ $errors->has('check_in') ? 'border-red-400' : 'border-gray-200 dark:border-white/10' }}
                                       bg-white dark:bg-white/5 text-gray-800 dark:text-white
-                                      focus:outline-none focus:ring-2 focus:ring-purple-500/30 transition duration-200">
+                                      focus:outline-none focus:ring-2 focus:ring-blue-500/30 transition duration-200">
                         @error('check_in')
                         <p class="mt-1 text-xs text-red-500">{{ $message }}</p>
                         @enderror
@@ -145,7 +145,7 @@ There Is An Input Error:
                                class="w-full px-4 py-2.5 rounded-xl text-sm border
                                       {{ $errors->has('check_out') ? 'border-red-400' : 'border-gray-200 dark:border-white/10' }}
                                       bg-white dark:bg-white/5 text-gray-800 dark:text-white
-                                      focus:outline-none focus:ring-2 focus:ring-purple-500/30 transition duration-200">
+                                      focus:outline-none focus:ring-2 focus:ring-blue-500/30 transition duration-200">
                         @error('check_out')
                         <p class="mt-1 text-xs text-red-500">{{ $message }}</p>
                         @enderror
@@ -160,7 +160,7 @@ There Is An Input Error:
                               class="w-full px-4 py-2.5 rounded-xl text-sm border border-gray-200 dark:border-white/10
                                      bg-white dark:bg-white/5 text-gray-800 dark:text-white
                                      placeholder:text-gray-300 dark:placeholder:text-white/20
-                                     focus:outline-none focus:ring-2 focus:ring-purple-500/30
+                                     focus:outline-none focus:ring-2 focus:ring-blue-500/30
                                      transition duration-200 resize-none">{{ old('notes') }}</textarea>
                 </div>
             </div>
@@ -170,7 +170,7 @@ There Is An Input Error:
         <div class="bg-white dark:bg-white/4 border border-gray-100 dark:border-white/8 rounded-2xl p-6">
             <h3 class="text-sm font-semibold text-gray-800 dark:text-white mb-1 flex items-center gap-2">
                 <span class="w-6 h-6 rounded-lg flex items-center justify-center text-white text-xs font-bold"
-                      style="background: linear-gradient(135deg, #7C3AED, #4F46E5)">3</span>
+                      style="background: #1d4ed8">3</span>
                 F&amp;B Order
                 <span class="text-xs font-normal text-gray-400 dark:text-white/30">(opsional)</span>
             </h3>
@@ -189,12 +189,12 @@ There Is An Input Error:
                     @php $idx = $loop->parent->index * 100 + $loop->index; @endphp
                     <div class="flex items-center justify-between p-3 rounded-xl border
                                 border-gray-100 dark:border-white/8 bg-gray-50 dark:bg-white/2
-                                hover:border-purple-200 dark:hover:border-purple-500/20 transition-colors">
+                                hover:border-blue-200 dark:hover:border-blue-500/20 transition-colors">
                         <div class="flex-1 min-w-0 mr-3">
                             <p class="text-sm font-medium text-gray-800 dark:text-white truncate">
                                 {{ $menu->name }}
                             </p>
-                            <p class="text-xs text-purple-600 dark:text-purple-400 mt-0.5">
+                            <p class="text-xs text-blue-600 dark:text-blue-400 mt-0.5">
                                 Rp {{ number_format($menu->price, 0, ',', '.') }}
                             </p>
                         </div>
@@ -213,9 +213,9 @@ There Is An Input Error:
                             </span>
                             <button type="button"
                                     onclick="changeQty({{ $menu->id }}, 1)"
-                                    class="w-7 h-7 rounded-lg border border-purple-200 dark:border-purple-500/30
-                                           text-purple-600 dark:text-purple-400 text-sm font-bold
-                                           hover:bg-purple-50 dark:hover:bg-purple-500/10 transition-colors
+                                    class="w-7 h-7 rounded-lg border border-blue-200 dark:border-blue-500/30
+                                           text-blue-600 dark:text-blue-400 text-sm font-bold
+                                           hover:bg-blue-50 dark:hover:bg-blue-500/10 transition-colors
                                            flex items-center justify-center">
                                 +
                             </button>
@@ -275,7 +275,7 @@ There Is An Input Error:
             {{-- Grand Total --}}
             <div class="flex justify-between items-center mb-5">
                 <span class="text-sm font-bold text-gray-800 dark:text-white">Grand Total</span>
-                <span id="summary_grand_total" class="text-xl font-bold text-purple-600 dark:text-purple-400">
+                <span id="summary_grand_total" class="text-xl font-bold text-blue-600 dark:text-blue-400">
                     Rp 0
                 </span>
             </div>
@@ -283,7 +283,7 @@ There Is An Input Error:
             <button type="submit"
                     class="w-full py-3 rounded-xl text-sm font-semibold text-white
                            transition-all hover:opacity-90 active:scale-95"
-                    style="background: linear-gradient(135deg, #7C3AED, #4F46E5)">
+                    style="background: #1d4ed8">
                     Make a Booking &amp; Invoice
             </button>
 

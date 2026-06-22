@@ -8,11 +8,11 @@
     @vite(['resources/css/app.css'])
 </head>
 
-<body class="bg-[#0D0B1F] text-white min-h-screen">
+<body class="bg-[#121214] text-white min-h-screen">
 
     {{-- Navbar --}}
     <nav class="fixed top-0 inset-x-0 z-50 backdrop-blur-md border-b border-white/5"
-        style="background: rgba(13,11,31,0.8)">
+        style="background: rgba(18,18,20,0.8)">
         <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
             <a href="{{ route('home') }}" class="flex items-center gap-3">
                 <div class="w-8 h-8 rounded-lg overflow-hidden bg-white/10 border border-white/20">
@@ -46,7 +46,7 @@
                 <div class="flex items-center gap-4 mb-5">
                     <h2 class="text-xl font-semibold">{{ $roomsInType->first()->roomType->name }}</h2>
                     <span
-                        class="text-xs px-3 py-1 rounded-full bg-purple-500/20 text-purple-300 border border-purple-500/20">
+                        class="text-xs px-3 py-1 rounded-full bg-blue-500/20 text-blue-300 border border-blue-500/20">
                         Rp {{ number_format($roomsInType->first()->roomType->price_per_night, 0, ',', '.') }}/Night
                     </span>
                     <span class="text-xs text-white/30">{{ $roomsInType->count() }} Rooms Available </span>
@@ -62,7 +62,7 @@
                                     <div class="text-2xl font-bold text-white">{{ $room->room_number }}</div>
                                     <div class="text-xs text-white/30 mt-0.5">Floor {{ $room->floor }}</div>
                                 </div>
-                                <span class="text-xs px-2 py-1 rounded-lg bg-purple-500/20 text-black-300 font-medium">
+                                <span class="text-xs px-2 py-1 rounded-lg bg-blue-500/20 text-blue-300 font-medium">
                                     Available
                                 </span>
                             </div>
@@ -77,8 +77,7 @@
 
                             <a href="{{ route('booking.create', $room) }}"
                                 class="block w-full text-center py-2.5 rounded-xl text-xs font-semibold text-white
-                                                                                                                  transition-all duration-200 hover:opacity-90 active:scale-95"
-                                style="background: linear-gradient(135deg, #010002, #310802)">
+                                                                                                                  transition-all duration-200 bg-blue-600 hover:bg-blue-700 active:scale-95">
                                 Book This Room
                             </a>
                         </div>
@@ -91,7 +90,7 @@
             <div class="text-center py-20">
                 <div class="text-5xl mb-4 opacity-30">🛏️</div>
                 <p class="text-white/40">Sorry, There Are No Rooms Available At This Time.</p>
-                <a href="{{ route('home') }}" class="inline-block mt-4 text-purple-400 text-sm hover:underline">
+                <a href="{{ route('home') }}" class="inline-block mt-4 text-blue-400 text-sm hover:underline">
                     Return To Main Page
                 </a>
             </div>

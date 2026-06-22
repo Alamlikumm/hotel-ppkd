@@ -52,10 +52,10 @@
     </style>
 </head>
 
-<body class="bg-[#0D0B1F] text-white">
+<body class="bg-[#121214] text-white">
 
 <nav class="fixed top-0 inset-x-0 z-50 backdrop-blur-md border-b border-white/5"
-    style="background: rgba(13,11,31,0.8)">
+    style="background: rgba(18,18,20,0.8)">
 
     <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
 
@@ -92,8 +92,7 @@
 
 
             <a href="{{ route('rooms') }}"
-                class="px-4 py-2 rounded-xl text-xs font-semibold text-white transition-all hover:opacity-90"
-                style="background: linear-gradient(135deg, #b423032d, #2f0202)">
+                class="px-4 py-2 rounded-xl text-xs font-semibold text-white transition-all hover:opacity-90 bg-red-950 border border-red-800">
                 Book Now
             </a>
 
@@ -109,25 +108,7 @@
 
     <div class="absolute inset-0">
 
-        <div class="absolute inset-0 bg-gradient-to-br from-[#0D0B1F] via-[#150a2a] to-[#0D0B1F]"></div>
-
-
-        <div class="absolute top-1/4 left-1/4 w-96 h-96 rounded-full opacity-20"
-            style="background: radial-gradient(circle, #060111, transparent)">
-        </div>
-
-
-        <div class="absolute bottom-1/4 right-1/4 w-80 h-80 rounded-full opacity-15"
-            style="background: radial-gradient(circle, #5b0802, transparent)">
-        </div>
-
-
-        <div class="absolute inset-0 opacity-[0.03]"
-            style="background-image:
-            linear-gradient(rgb(0, 0, 0) 1px, transparent 1px),
-            linear-gradient(90deg, rgb(37, 6, 2) 1px, transparent 1px);
-            background-size:60px 60px">
-        </div>
+        <div class="absolute inset-0 bg-[#121214]"></div>
 
     </div>
 
@@ -139,7 +120,7 @@
         <div class="fade-up">
 
             <span class="inline-block px-4 py-1.5 rounded-full text-xs font-medium mb-6
-            bg-black-500/20 text-purple-300 border border-black-500/30">
+            bg-black-500/20 text-blue-400 border border-black-500/30">
 
                 ✦ {{ $availableCount }} Rooms Available Today
 
@@ -171,7 +152,7 @@
 
             <a href="{{ route('rooms') }}"
                 class="px-8 py-3.5 rounded-2xl font-semibold text-white transition-all hover:opacity-90 active:scale-95 shadow-lg"
-                style="background: linear-gradient(135deg, #05000e, #060612);
+                style="background: #121214;
                 box-shadow:0 0 30px rgba(124,58,237,0.4)">
 
                 View & Book Rooms
@@ -222,11 +203,10 @@ Choose From a Variety Of Room Types Tailored To Your Needs.
     @foreach($roomTypes as $type)
         <div
             class="group relative bg-white/4 border border-white/8 rounded-2xl overflow-hidden
-                                        hover:border-purple-500/30 hover:bg-white/6 transition-all duration-300">
+                                        hover:border-blue-500/30 hover:bg-white/6 transition-all duration-300">
 
             {{-- Image placeholder --}}
-            <div class="h-48 relative overflow-hidden"
-                style="background: linear-gradient(135deg, rgba(124,58,237,0.2), rgba(79,70,229,0.2))">
+            <div class="h-48 relative overflow-hidden bg-zinc-950">
 
                 @if($type->thumbnail)
                     <img src="{{ asset('storage/' . $type->thumbnail) }}" alt="{{ $type->name }}"
@@ -237,10 +217,10 @@ Choose From a Variety Of Room Types Tailored To Your Needs.
                     </div>
                 @endif
 
-                <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
+                <div class="absolute inset-0 bg-black/40"></div>
 
                 <div class="absolute bottom-3 left-4">
-                    <span class="text-xs px-2.5 py-1 rounded-full bg-purple-500/80 text-white font-medium">
+                    <span class="text-xs px-2.5 py-1 rounded-full bg-blue-600/80 text-white font-medium">
                         {{ $type->rooms_count }} rooms available
                     </span>
                 </div>
@@ -263,15 +243,14 @@ Choose From a Variety Of Room Types Tailored To Your Needs.
 
                 <div class="flex items-center justify-between">
                     <div>
-                        <span class="text-xl font-bold text-purple-400">
+                        <span class="text-xl font-bold text-blue-400">
                             Rp {{ number_format($type->price_per_night, 0, ',', '.') }}
                         </span>
                         <span class="text-xs text-white/30">/night</span>
                     </div>
 
                     <a href="{{ route('rooms') }}"
-                        class="px-4 py-2 rounded-xl text-xs font-semibold text-white transition-all hover:opacity-90"
-                        style="background: linear-gradient(135deg, #7C3AED, #4F46E5)">
+                        class="px-4 py-2 rounded-xl text-xs font-semibold text-white transition-all bg-blue-600 hover:bg-blue-700">
                         Book Now
                     </a>
                 </div>
@@ -284,7 +263,7 @@ Choose From a Variety Of Room Types Tailored To Your Needs.
 <section id="fasilitas" class="py-20 px-6 border-t border-white/5">
     <div class="max-w-6xl mx-auto">
         <div class="text-center mb-12">
-            <p class="text-purple-400 text-sm font-medium tracking-widest uppercase mb-3">Facilities</p>
+            <p class="text-blue-400 text-sm font-medium tracking-widest uppercase mb-3">Facilities</p>
             <h2 class="text-3xl font-bold">Everything You Need</h2>
         </div>
 
@@ -300,7 +279,7 @@ Choose From a Variety Of Room Types Tailored To Your Needs.
                 ['🚗', 'Shuttle Service', 'Airport & Train Station']
             ] as [$icon, $name, $desc])
 
-                <div class="bg-white/4 border border-white/8 rounded-2xl p-5 hover:border-purple-500/30 transition-all duration-200">
+                <div class="bg-white/4 border border-white/8 rounded-2xl p-5 hover:border-blue-500/30 transition-all duration-200">
                     <div class="text-3xl mb-3">{{ $icon }}</div>
                     <div class="text-sm font-semibold mb-1">{{ $name }}</div>
                     <div class="text-xs text-white/40">{{ $desc }}</div>
@@ -315,14 +294,14 @@ Choose From a Variety Of Room Types Tailored To Your Needs.
 <section id="ulasan" class="py-20 px-6 border-t border-white/5">
     <div class="max-w-6xl mx-auto">
         <div class="text-center mb-12">
-            <p class="text-purple-400 text-sm font-medium tracking-widest uppercase mb-3">Guest Reviews</p>
+            <p class="text-blue-400 text-sm font-medium tracking-widest uppercase mb-3">Guest Reviews</p>
             <h2 class="text-3xl font-bold">What Our Guests Say</h2>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
             @forelse($reviews as $review)
 
-                <div class="bg-white/4 border border-white/8 rounded-2xl p-6 hover:border-purple-500/20 transition-all">
+                <div class="bg-white/4 border border-white/8 rounded-2xl p-6 hover:border-blue-500/20 transition-all">
 
                     <div class="flex items-center gap-1 mb-4">
                         {{-- Stars --}}
@@ -333,8 +312,7 @@ Choose From a Variety Of Room Types Tailored To Your Needs.
                     </p>
 
                     <div class="flex items-center gap-3">
-                        <div class="w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold text-white"
-                            style="background: linear-gradient(135deg, #7C3AED, #4F46E5)">
+                        <div class="w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold text-white bg-zinc-800 border border-zinc-700">
                             {{ strtoupper(substr($review->guest_name, 0, 2)) }}
                         </div>
 

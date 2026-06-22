@@ -5,7 +5,7 @@
 @section('topbar-actions')
     <button onclick="document.getElementById('modal-tambah').classList.remove('hidden')"
         class="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-semibold text-white transition-all duration-200 hover:opacity-90 active:scale-95"
-        style="background: linear-gradient(135deg, #090411, #05040f)">
+        style="background: #121214">
         <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
         </svg>
@@ -20,7 +20,7 @@
         <form method="GET" class="flex items-center gap-2">
             <select name="category" onchange="this.form.submit()" class="text-sm px-3 py-2 rounded-xl border border-gray-200 dark:border-white/10
                            bg-white dark:bg-white/5 text-gray-700 dark:text-white/70
-                           focus:outline-none focus:ring-2 focus:ring-purple-500/30">
+                           focus:outline-none focus:ring-2 focus:ring-blue-500/30">
                 <option value="">All Categories</option>
                 @foreach($categories as $cat)
                     <option value="{{ $cat->id }}" {{ request('category') == $cat->id ? 'selected' : '' }}>
@@ -30,8 +30,8 @@
             </select>
             <select name="status" onchange="this.form.submit()" class="text-sm px-3 py-2 rounded-xl border border-gray-200 dark:border-white/10
                            bg-white dark:bg-white/5 text-gray-700 dark:text-white/70
-                           focus:outline-none focus:ring-2 focus:ring-purple-500/30">
-                <option value="" class="text-purple-500">All Status</option>
+                           focus:outline-none focus:ring-2 focus:ring-blue-500/30">
+                <option value="" class="text-blue-500">All Status</option>
                 <option value="available" {{ request('status') == 'available' ? 'selected' : '' }}>Available</option>
                 <option value="unavailable" {{ request('status') == 'unavailable' ? 'selected' : '' }}>Out of stock</option>
             </select>
@@ -45,7 +45,7 @@
                 class="bg-white dark:bg-white/4 border border-gray-100 dark:border-white/8 rounded-2xl overflow-hidden hover:shadow-md transition-shadow duration-200 group">
                 {{-- Image --}}
                 <div
-                    class="h-36 bg-gradient-to-br from-purple-50 to-violet-50 dark:from-purple-900/20 dark:to-violet-900/20 relative overflow-hidden">
+                    class="h-36 bg-blue-50/50 dark:bg-blue-900/10 relative overflow-hidden">
                     @if($menu->image)
                         <img src="{{ asset('storage/' . $menu->image) }}" alt="{{ $menu->name }}"
                             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
@@ -68,13 +68,13 @@
                     </div>
                     <p class="text-xs text-gray-400 dark:text-white/30 mb-3">{{ $menu->category->name }}</p>
                     <div class="flex items-center justify-between">
-                        <span class="text-sm font-bold text-purple-600 dark:text-purple-400">
+                        <span class="text-sm font-bold text-blue-600 dark:text-blue-400">
                             Rp {{ number_format($menu->price, 0, ',', '.') }}
                         </span>
                         <div class="flex items-center gap-1">
                             <button
                                 onclick="openEditMenu({{ $menu->id }}, '{{ addslashes($menu->name) }}', {{ $menu->fnb_category_id }}, {{ $menu->price }}, '{{ $menu->status }}')"
-                                class="p-1.5 rounded-lg text-gray-400 hover:text-purple-500 hover:bg-purple-50 dark:hover:bg-purple-500/10 transition-colors duration-150">
+                                class="p-1.5 rounded-lg text-gray-400 hover:text-blue-500 hover:bg-blue-50 dark:hover:bg-blue-500/10 transition-colors duration-150">
                                 <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
@@ -118,7 +118,7 @@
                 <div class="flex gap-3 pt-2">
                     <button type="submit"
                         class="flex-1 py-2.5 rounded-xl text-sm font-semibold text-white hover:opacity-90 transition-opacity"
-                        style="background: linear-gradient(135deg, #7C3AED, #4F46E5)">
+                        style="background: #1d4ed8">
                         Save
                     </button>
                     <button type="button" onclick="document.getElementById('modal-tambah').classList.add('hidden')" class="flex-1 py-2.5 rounded-xl text-sm font-medium text-gray-600 dark:text-white/60

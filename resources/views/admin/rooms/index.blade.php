@@ -5,7 +5,7 @@
 @section('topbar-actions')
 <a href="{{ route('admin.rooms.create') }}"
    class="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-semibold text-white transition-all duration-200 hover:opacity-90 active:scale-95"
-   style="background: linear-gradient(135deg, #05020a, #060612)">
+   style="background: #121214">
     <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
     </svg>
@@ -21,7 +21,7 @@
         <select name="floor" onchange="this.form.submit()"
                 class="text-sm px-3 py-2 rounded-xl border border-gray-200 dark:border-white/10
                        bg-white dark:bg-white/5 text-gray-700 dark:text-white/70
-                       focus:outline-none focus:ring-2 focus:ring-purple-500/30">
+                       focus:outline-none focus:ring-2 focus:ring-blue-500/30">
             <option value="">All Floors</option>
             @foreach($floors as $floor)
             <option value="{{ $floor }}" {{ request('floor') == $floor ? 'selected' : '' }}>
@@ -32,7 +32,7 @@
         <select name="status" onchange="this.form.submit()"
                 class="text-sm px-3 py-2 rounded-xl border border-gray-200 dark:border-white/10
                        bg-white dark:bg-white/5 text-gray-700 dark:text-white/70
-                       focus:outline-none focus:ring-2 focus:ring-purple-500/30">
+                       focus:outline-none focus:ring-2 focus:ring-blue-500/30">
             <option value="">All Status</option>
             <option value="available"   {{ request('status') == 'available'   ? 'selected' : '' }}>Available</option>
             <option value="occupied"    {{ request('status') == 'occupied'    ? 'selected' : '' }}>Occupied</option>
@@ -42,7 +42,7 @@
 
     {{-- Legend --}}
     <div class="ml-auto flex items-center gap-4 text-xs text-gray-500 dark:text-white/40">
-        <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-purple-500"></span>Available ({{ $rooms->where('status','available')->count() }})</span>
+        <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-blue-500"></span>Available ({{ $rooms->where('status','available')->count() }})</span>
         <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-red-400"></span>Occupied ({{ $rooms->where('status','occupied')->count() }})</span>
         <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-amber-400"></span>Maintenance ({{ $rooms->where('status','maintenance')->count() }})</span>
     </div>
@@ -53,7 +53,7 @@
     @forelse($rooms as $room)
     @php
     $style = match($room->status) {
-        'available'   => ['card' => 'border-purple-200 dark:border-purple-500/30 bg-white dark:bg-purple-500/8',  'badge' => 'bg-purple-50 dark:bg-purple-500/20 text-purple-700 dark:text-purple-300', 'dot' => 'bg-purple-500', 'label' => 'Available'],
+        'available'   => ['card' => 'border-blue-200 dark:border-blue-500/30 bg-white dark:bg-blue-500/8',  'badge' => 'bg-blue-50 dark:bg-blue-500/20 text-blue-700 dark:text-blue-300', 'dot' => 'bg-blue-500', 'label' => 'Available'],
         'occupied'    => ['card' => 'border-red-200 dark:border-red-500/30 bg-white dark:bg-red-500/8',           'badge' => 'bg-red-50 dark:bg-red-500/20 text-red-700 dark:text-red-300',           'dot' => 'bg-red-400',    'label' => 'Occupied'],
         'maintenance' => ['card' => 'border-amber-200 dark:border-amber-500/30 bg-white dark:bg-amber-500/8',     'badge' => 'bg-amber-50 dark:bg-amber-500/20 text-amber-700 dark:text-amber-300',   'dot' => 'bg-amber-400',  'label' => 'Maintenance'],
         default       => ['card' => 'border-gray-200 bg-white', 'badge' => 'bg-gray-100 text-gray-500', 'dot' => 'bg-gray-400', 'label' => '-'],
@@ -74,7 +74,7 @@
                 {{-- Actions Dropdown Menu --}}
                 <div class="relative">
                     <button @click="open = !open" @click.outside="open = false"
-                            class="p-1 rounded-xl text-gray-400 hover:text-purple-600 dark:hover:text-purple-400 hover:bg-purple-50 dark:hover:bg-purple-500/10 transition-colors duration-150 focus:outline-none">
+                            class="p-1 rounded-xl text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-500/10 transition-colors duration-150 focus:outline-none">
                         <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z"/>
                         </svg>
@@ -90,7 +90,7 @@
                          class="absolute right-0 mt-1.5 w-32 rounded-xl bg-white dark:bg-[#1A1535] border border-gray-100 dark:border-white/10 shadow-xl py-1.5 z-10"
                          style="display: none;">
                         <a href="{{ route('admin.rooms.edit', $room) }}"
-                           class="flex items-center gap-2 px-3 py-1.5 text-xs text-gray-700 dark:text-purple-200 hover:bg-purple-50 dark:hover:bg-purple-500/10 transition-colors">
+                           class="flex items-center gap-2 px-3 py-1.5 text-xs text-gray-700 dark:text-blue-200 hover:bg-blue-50 dark:hover:bg-blue-500/10 transition-colors">
                             <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
                             </svg>
@@ -120,7 +120,7 @@
     </div>
     @empty
     <div class="col-span-4 py-16 text-center text-gray-400 dark:text-white/25">
-        <p class="text-sm">There Are No Rooms Yet. <a href="{{ route('admin.rooms.create') }}" class="text-purple-500 hover:underline">Add Now</a></p>
+        <p class="text-sm">There Are No Rooms Yet. <a href="{{ route('admin.rooms.create') }}" class="text-blue-500 hover:underline">Add Now</a></p>
     </div>
     @endforelse
 </div>

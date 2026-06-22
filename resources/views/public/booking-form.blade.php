@@ -8,10 +8,10 @@
     @vite(['resources/css/app.css'])
 </head>
 
-<body class="bg-[#0D0B1F] text-white min-h-screen">
+<body class="bg-[#121214] text-white min-h-screen">
 
     <nav class="fixed top-0 inset-x-0 z-50 backdrop-blur-md border-b border-white/5"
-        style="background: rgba(13,11,31,0.8)">
+        style="background: rgba(18,18,20,0.8)">
         <div class="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
             <a href="{{ route('home') }}" class="flex items-center gap-3">
                 <div class="w-8 h-8 rounded-lg overflow-hidden bg-white/10 border border-white/20">
@@ -32,14 +32,13 @@
 
             {{-- Room Information --}}
             <div>
-                <p class="text-purple-400 text-xs font-medium tracking-widest uppercase mb-3">
+                <p class="text-blue-400 text-xs font-medium tracking-widest uppercase mb-3">
                     Room Details
                 </p>
 
                 <div class="bg-white/4 border border-white/8 rounded-2xl overflow-hidden mb-4">
 
-                    <div class="h-48 flex items-center justify-center"
-                        style="background: linear-gradient(135deg, rgba(124,58,237,0.2), rgba(79,70,229,0.2))">
+                    <div class="h-48 flex items-center justify-center bg-zinc-950 border-b border-white/8">
                         <span class="text-6xl opacity-30">🛏️</span>
                     </div>
 
@@ -57,7 +56,7 @@
                             </div>
 
                             <span
-                                class="text-xs px-2.5 py-1 rounded-full bg-purple-500/20 text-purple-300 border border-purple-500/20">
+                                class="text-xs px-2.5 py-1 rounded-full bg-blue-500/20 text-blue-300 border border-blue-500/20">
                                 Available
                             </span>
                         </div>
@@ -77,7 +76,7 @@
                         @endif
 
                         <div class="pt-4 border-t border-white/5">
-                            <span class="text-2xl font-bold text-purple-400">
+                            <span class="text-2xl font-bold text-blue-400">
                                 Rp {{ number_format($room->roomType->price_per_night,0,',','.') }}
                             </span>
 
@@ -90,9 +89,9 @@
 
                 {{-- Price Estimate --}}
                 <div id="price-estimate"
-                    class="hidden bg-purple-500/10 border border-purple-500/20 rounded-2xl p-4">
+                    class="hidden bg-blue-500/10 border border-blue-500/20 rounded-2xl p-4">
 
-                    <p class="text-xs text-purple-300 font-medium mb-2">
+                    <p class="text-xs text-blue-300 font-medium mb-2">
                         Estimated Total
                     </p>
 
@@ -106,7 +105,7 @@
 
                     <div class="flex justify-between text-lg font-bold text-white mt-2 pt-2 border-t border-white/10">
                         <span>Total</span>
-                        <span id="total-price" class="text-purple-400">
+                        <span id="total-price" class="text-blue-400">
                             Rp 0
                         </span>
                     </div>
@@ -116,7 +115,7 @@
 
             {{-- Guest Information --}}
             <div>
-                <p class="text-purple-400 text-xs font-medium tracking-widest uppercase mb-3">
+                <p class="text-blue-400 text-xs font-medium tracking-widest uppercase mb-3">
                     Guest Information
                 </p>
 
@@ -148,8 +147,8 @@
                                 placeholder="Enter your full name"
                                 class="w-full px-4 py-3 rounded-xl text-sm bg-white/5 border border-white/10
                                        text-white placeholder:text-white/20
-                                       focus:outline-none focus:ring-2 focus:ring-purple-500/40
-                                       focus:border-purple-500/50 transition duration-200">
+                                       focus:outline-none focus:ring-2 focus:ring-blue-500/40
+                                       focus:border-blue-500/50 transition duration-200">
                         </div>
 
                         {{-- Email --}}
@@ -165,8 +164,8 @@
                                 placeholder="example@email.com"
                                 class="w-full px-4 py-3 rounded-xl text-sm bg-white/5 border border-white/10
                                        text-white placeholder:text-white/20
-                                       focus:outline-none focus:ring-2 focus:ring-purple-500/40
-                                       focus:border-purple-500/50 transition duration-200">
+                                       focus:outline-none focus:ring-2 focus:ring-blue-500/40
+                                       focus:border-blue-500/50 transition duration-200">
                         </div>
 
                         {{-- WhatsApp --}}
@@ -182,8 +181,8 @@
                                 placeholder="+62 812 3456 7890"
                                 class="w-full px-4 py-3 rounded-xl text-sm bg-white/5 border border-white/10
                                        text-white placeholder:text-white/20
-                                       focus:outline-none focus:ring-2 focus:ring-purple-500/40
-                                       focus:border-purple-500/50 transition duration-200">
+                                       focus:outline-none focus:ring-2 focus:ring-blue-500/40
+                                       focus:border-blue-500/50 transition duration-200">
                         </div>
 
                         {{-- Check In / Out --}}
@@ -202,7 +201,7 @@
                                     min="{{ date('Y-m-d') }}"
                                     class="w-full px-4 py-3 rounded-xl text-sm bg-white/5 border border-white/10
                                            text-white focus:outline-none
-                                           focus:ring-2 focus:ring-purple-500/40
+                                           focus:ring-2 focus:ring-blue-500/40
                                            transition duration-200">
                             </div>
 
@@ -219,7 +218,7 @@
                                     min="{{ date('Y-m-d', strtotime('+1 day')) }}"
                                     class="w-full px-4 py-3 rounded-xl text-sm bg-white/5 border border-white/10
                                            text-white focus:outline-none
-                                           focus:ring-2 focus:ring-purple-500/40
+                                           focus:ring-2 focus:ring-blue-500/40
                                            transition duration-200">
                             </div>
 
@@ -238,7 +237,7 @@
                                 placeholder="Special requests, arrival time, etc..."
                                 class="w-full px-4 py-3 rounded-xl text-sm bg-white/5 border border-white/10
                                        text-white placeholder:text-white/20 resize-none
-                                       focus:outline-none focus:ring-2 focus:ring-purple-500/40
+                                       focus:outline-none focus:ring-2 focus:ring-blue-500/40
                                        transition duration-200">{{ old('notes') }}</textarea>
                         </div>
 
@@ -246,9 +245,7 @@
                         <button
                             type="submit"
                             class="w-full py-3.5 rounded-xl text-sm font-semibold text-white
-                                   transition-all hover:opacity-90 active:scale-95 mt-2"
-                            style="background: linear-gradient(135deg,#7C3AED,#4F46E5);
-                                   box-shadow:0 0 20px rgba(124,58,237,.3);">
+                                   transition-all bg-blue-600 hover:bg-blue-700 active:scale-95 mt-2">
 
                             Confirm Booking
 

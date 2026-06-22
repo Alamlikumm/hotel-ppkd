@@ -10,7 +10,7 @@
            class="w-full px-4 py-2.5 rounded-xl text-sm border border-gray-200 dark:border-white/10
                   bg-white dark:bg-white/5 text-gray-800 dark:text-white
                   placeholder:text-gray-300 dark:placeholder:text-white/20
-                  focus:outline-none focus:ring-2 focus:ring-purple-500/30 focus:border-purple-400
+                  focus:outline-none focus:ring-2 focus:ring-blue-500/30 focus:border-blue-400
                   transition duration-200 @error('room_number') border-red-400 @enderror">
     @error('room_number')<p class="mt-1 text-xs text-red-500">{{ $message }}</p>@enderror
 </div>
@@ -25,7 +25,7 @@
            class="w-full px-4 py-2.5 rounded-xl text-sm border border-gray-200 dark:border-white/10
                   bg-white dark:bg-white/5 text-gray-800 dark:text-white
                   placeholder:text-gray-300 dark:placeholder:text-white/20
-                  focus:outline-none focus:ring-2 focus:ring-purple-500/30 focus:border-purple-400
+                  focus:outline-none focus:ring-2 focus:ring-blue-500/30 focus:border-blue-400
                   transition duration-200 @error('floor') border-red-400 @enderror">
     @error('floor')<p class="mt-1 text-xs text-red-500">{{ $message }}</p>@enderror
 </div>
@@ -37,7 +37,7 @@
     <select name="room_type_id"
             class="w-full px-4 py-2.5 rounded-xl text-sm border border-gray-200 dark:border-white/10
                    bg-white dark:bg-white/5 text-gray-800 dark:text-white
-                   focus:outline-none focus:ring-2 focus:ring-purple-500/30 focus:border-purple-400
+                   focus:outline-none focus:ring-2 focus:ring-blue-500/30 focus:border-blue-400
                    transition duration-200 @error('room_type_id') border-red-400 @enderror">
         <option value="">Select Room Type</option>
         @foreach($roomTypes as $type)
@@ -57,7 +57,7 @@
     <select name="status"
             class="w-full px-4 py-2.5 rounded-xl text-sm border border-gray-200 dark:border-white/10
                    bg-white dark:bg-white/5 text-gray-800 dark:text-white
-                   focus:outline-none focus:ring-2 focus:ring-purple-500/30
+                   focus:outline-none focus:ring-2 focus:ring-blue-500/30
                    transition duration-200">
         <option value="available"   {{ old('status', $room->status ?? '') == 'available'   ? 'selected' : '' }}>Available</option>
         <option value="occupied"    {{ old('status', $room->status ?? '') == 'occupied'    ? 'selected' : '' }}>Occupied</option>
@@ -73,6 +73,6 @@
               class="w-full px-4 py-2.5 rounded-xl text-sm border border-gray-200 dark:border-white/10
                      bg-white dark:bg-white/5 text-gray-800 dark:text-white
                      placeholder:text-gray-300 dark:placeholder:text-white/20
-                     focus:outline-none focus:ring-2 focus:ring-purple-500/30
+                     focus:outline-none focus:ring-2 focus:ring-blue-500/30
                      transition duration-200 resize-none">{{ old('notes', $room->notes ?? '') }}</textarea>
 </div>

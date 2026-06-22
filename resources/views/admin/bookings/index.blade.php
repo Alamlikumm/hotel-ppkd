@@ -5,7 +5,7 @@
 @section('topbar-actions')
     <a href="{{ route('admin.bookings.create') }}"
         class="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-semibold text-white transition-all duration-200 hover:opacity-90 active:scale-95"
-        style="background: linear-gradient(135deg, #7C3AED, #4F46E5)">
+        style="background: #1d4ed8">
         <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
         </svg>
@@ -22,7 +22,7 @@
             <a href="{{ route('admin.bookings.index', $val ? ['status' => $val] : []) }}"
                 class="px-4 py-1.5 rounded-xl text-xs font-medium transition-all duration-150
                       {{ request('status') === $val || (request('status') === null && $val === '')
-                ? 'text-white shadow-sm' : 'text-gray-500 dark:text-white/40 hover:text-gray-700 dark:hover:text-white/70' }}" @if(request('status') === $val || (request('status') === null && $val === '')) style="background: linear-gradient(135deg, #7C3AED, #4F46E5)" @endif>
+                ? 'text-white shadow-sm' : 'text-gray-500 dark:text-white/40 hover:text-gray-700 dark:hover:text-white/70' }}" @if(request('status') === $val || (request('status') === null && $val === '')) style="background: #1d4ed8" @endif>
                 {{ $label }}
             </a>
         @endforeach
@@ -63,7 +63,7 @@
                 @forelse($bookings as $booking)
                     @php
                         $statusStyle = match ($booking->status) {
-                            'confirmed' => 'bg-purple-50 dark:bg-purple-500/15 text-purple-700 dark:text-purple-300',
+                            'confirmed' => 'bg-blue-50 dark:bg-blue-500/15 text-blue-700 dark:text-blue-300',
                             'pending' => 'bg-amber-50 dark:bg-amber-500/15 text-amber-700 dark:text-amber-300',
                             'checked_in' => 'bg-green-50 dark:bg-green-500/15 text-green-700 dark:text-green-300',
                             'checked_out' => 'bg-gray-100 dark:bg-white/8 text-gray-600 dark:text-white/40',
@@ -73,7 +73,7 @@
                     @endphp
                     <tr class="hover:bg-gray-50/50 dark:hover:bg-white/2 transition-colors duration-100">
                         <td class="px-5 py-3.5">
-                            <span class="text-xs font-mono font-semibold text-purple-600 dark:text-purple-400">
+                            <span class="text-xs font-mono font-semibold text-blue-600 dark:text-blue-400">
                                 {{ $booking->booking_code }}
                             </span>
                         </td>

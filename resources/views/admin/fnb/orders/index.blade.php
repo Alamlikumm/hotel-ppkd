@@ -20,7 +20,7 @@
             @foreach($orders->where('status', $status) as $order)
             <div class="p-4">
                 <div class="flex items-start justify-between mb-2">
-                    <span class="text-xs font-mono font-semibold text-purple-600 dark:text-purple-400">
+                    <span class="text-xs font-mono font-semibold text-blue-600 dark:text-blue-400">
                         {{ $order->order_code }}
                     </span>
                     <span class="text-xs text-gray-400 dark:text-white/30">
@@ -45,7 +45,7 @@
                         <input type="hidden" name="status" value="{{ $status === 'queue' ? 'processing' : 'done' }}">
                         <button type="submit"
                                 class="text-xs px-3 py-1.5 rounded-lg font-medium text-white transition-all hover:opacity-90 active:scale-95"
-                                style="background: linear-gradient(135deg, #7C3AED, #4F46E5)">
+                                style="background: #1d4ed8">
                             {{ $status === 'queue' ? 'Proses' : 'Selesaikan' }}
                         </button>
                     </form>

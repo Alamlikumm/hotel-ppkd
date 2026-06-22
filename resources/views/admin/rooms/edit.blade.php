@@ -11,7 +11,7 @@
             <div class="flex gap-3 pt-2">
                 <button type="submit"
                         class="px-6 py-2.5 rounded-xl text-sm font-semibold text-white transition-all duration-200 hover:opacity-90 active:scale-95"
-                        style="background: linear-gradient(135deg, #7C3AED, #4F46E5)">
+                        style="background: #1d4ed8">
                     Update
                 </button>
                 <a href="{{ route('admin.rooms.index') }}"

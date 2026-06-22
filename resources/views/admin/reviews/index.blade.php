@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title', 'Ulasan Tamu')
+@section('title', 'Guest Reviews')
 @section('subtitle', 'Reviews From Guests Dido Hotel')
 
 @section('content')
@@ -37,7 +37,7 @@
         <div class="flex items-start justify-between mb-3">
             <div class="flex items-center gap-3">
                 <div class="w-9 h-9 rounded-xl flex items-center justify-center font-semibold text-xs text-white flex-shrink-0"
-                     style="background: linear-gradient(135deg, #7C3AED, #4F46E5)">
+                     style="background: #1d4ed8">
                     {{ strtoupper(substr($review->guest_name, 0, 2)) }}
                 </div>
                 <div>
@@ -61,8 +61,8 @@
         <p class="text-sm text-gray-600 dark:text-white/60 mb-3 leading-relaxed">{{ $review->comment }}</p>
 
         @if($review->admin_reply)
-        <div class="ml-4 pl-4 border-l-2 border-purple-200 dark:border-purple-500/30">
-            <p class="text-xs font-semibold text-purple-600 dark:text-purple-400 mb-1">Admin Reply</p>
+        <div class="ml-4 pl-4 border-l-2 border-blue-200 dark:border-blue-500/30">
+            <p class="text-xs font-semibold text-blue-600 dark:text-blue-400 mb-1">Admin Reply</p>
             <p class="text-sm text-gray-500 dark:text-white/40">{{ $review->admin_reply }}</p>
         </div>
         @else
@@ -72,10 +72,10 @@
                    class="flex-1 px-4 py-2 rounded-xl text-sm border border-gray-200 dark:border-white/10
                           bg-gray-50 dark:bg-white/5 text-gray-800 dark:text-white
                           placeholder:text-gray-300 dark:placeholder:text-white/20
-                          focus:outline-none focus:ring-2 focus:ring-purple-500/30 transition duration-200">
+                          focus:outline-none focus:ring-2 focus:ring-blue-500/30 transition duration-200">
             <button type="submit"
                     class="px-4 py-2 rounded-xl text-sm font-medium text-white hover:opacity-90 transition-opacity"
-                    style="background: linear-gradient(135deg, #7C3AED, #4F46E5)">
+                    style="background: #1d4ed8">
                 Reply
             </button>
         </form>

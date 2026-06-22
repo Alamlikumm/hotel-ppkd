@@ -8,13 +8,13 @@
 <div class="grid grid-cols-4 gap-4 mb-6">
     @php
     $metrics = [
-        ['label' => 'Rooms Total',      'value' => $stats['total_rooms'],     'color' => 'purple', 'sub' => '3 tipe kamar'],
+        ['label' => 'Rooms Total',      'value' => $stats['total_rooms'],     'color' => 'sky', 'sub' => '3 tipe kamar'],
         ['label' => 'Rooms Available',   'value' => $stats['available_rooms'], 'color' => 'green',  'sub' => 'siap dipesan'],
         ['label' => 'Active Booking',    'value' => $stats['active_bookings'], 'color' => 'blue',   'sub' => 'hari ini'],
         ['label' => 'Revenue Today', 'value' => 'Rp '.number_format($stats['revenue_today'],0,',','.'), 'color' => 'amber', 'sub' => 'total pendapatan'],
     ];
     $colors = [
-        'purple' => ['bg' => 'bg-purple-50 dark:bg-purple-500/10', 'text' => 'text-purple-700 dark:text-purple-300', 'border' => 'border-purple-100 dark:border-purple-500/20', 'dot' => 'bg-purple-500'],
+        'sky'    => ['bg' => 'bg-sky-50 dark:bg-sky-500/10',     'text' => 'text-sky-700 dark:text-sky-300',     'border' => 'border-sky-100 dark:border-sky-500/20',     'dot' => 'bg-sky-500'],
         'green'  => ['bg' => 'bg-green-50 dark:bg-green-500/10',   'text' => 'text-green-700 dark:text-green-300',   'border' => 'border-green-100 dark:border-green-500/20',   'dot' => 'bg-green-500'],
         'blue'   => ['bg' => 'bg-blue-50 dark:bg-blue-500/10',     'text' => 'text-blue-700 dark:text-blue-300',     'border' => 'border-blue-100 dark:border-blue-500/20',     'dot' => 'bg-blue-500'],
         'amber'  => ['bg' => 'bg-amber-50 dark:bg-amber-500/10',   'text' => 'text-amber-700 dark:text-amber-300',   'border' => 'border-amber-100 dark:border-amber-500/20',   'dot' => 'bg-amber-500'],
@@ -42,7 +42,7 @@
         <div class="flex items-center justify-between px-5 py-4 border-b border-gray-50 dark:border-white/5">
             <h3 class="text-sm font-semibold text-gray-800 dark:text-white">Latest Booking</h3>
             <a href="{{ route('admin.bookings.index') }}"
-               class="text-xs text-purple-600 dark:text-purple-400 hover:underline">See All →</a>
+               class="text-xs text-blue-600 dark:text-blue-400 hover:underline">See All →</a>
         </div>
         <div class="divide-y divide-gray-50 dark:divide-white/5">
             @forelse($recent_bookings as $booking)
@@ -55,7 +55,7 @@
                 </div>
                 @php
                 $statusMap = [
-                    'confirmed'   => 'bg-purple-50 dark:bg-purple-500/15 text-purple-700 dark:text-purple-300',
+                    'confirmed'   => 'bg-blue-50 dark:bg-blue-500/15 text-blue-700 dark:text-blue-300',
                     'pending'     => 'bg-amber-50 dark:bg-amber-500/15 text-amber-700 dark:text-amber-300',
                     'checked_in'  => 'bg-green-50 dark:bg-green-500/15 text-green-700 dark:text-green-300',
                     'checked_out' => 'bg-gray-100 dark:bg-white/8 text-gray-600 dark:text-white/50',
@@ -77,7 +77,7 @@
         <div class="flex items-center justify-between px-5 py-4 border-b border-gray-50 dark:border-white/5">
             <h3 class="text-sm font-semibold text-gray-800 dark:text-white">Order F&amp;B Latest</h3>
             <a href="{{ route('admin.fnb-orders.index') }}"
-               class="text-xs text-purple-600 dark:text-purple-400 hover:underline">See All →</a>
+               class="text-xs text-blue-600 dark:text-blue-400 hover:underline">See All →</a>
         </div>
         <div class="divide-y divide-gray-50 dark:divide-white/5">
             @forelse($recent_fnb_orders as $order)
@@ -112,7 +112,7 @@
     <div class="flex items-center justify-between mb-4">
         <h3 class="text-sm font-semibold text-gray-800 dark:text-white">Room Status</h3>
         <div class="flex items-center gap-4 text-xs text-gray-500 dark:text-white/40">
-            <span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-purple-500"></span>Available</span>
+            <span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-blue-500"></span>Available</span>
             <span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-red-400"></span>Occupied</span>
             <span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-amber-400"></span>Maintenance</span>
         </div>
@@ -125,7 +125,7 @@
         @foreach($rooms as $room)
         @php
         $roomStyle = match($room->status) {
-            'available'   => 'bg-purple-50 dark:bg-purple-500/10 border-purple-200 dark:border-purple-500/30 text-purple-700 dark:text-purple-300',
+            'available'   => 'bg-blue-50 dark:bg-blue-500/10 border-blue-200 dark:border-blue-500/30 text-blue-700 dark:text-blue-300',
             'occupied'    => 'bg-red-50 dark:bg-red-500/10 border-red-200 dark:border-red-500/30 text-red-700 dark:text-red-300',
             'maintenance' => 'bg-amber-50 dark:bg-amber-500/10 border-amber-200 dark:border-amber-500/30 text-amber-700 dark:text-amber-300',
             default       => 'bg-gray-50 border-gray-200 text-gray-500',

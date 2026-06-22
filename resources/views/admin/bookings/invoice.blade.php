@@ -40,7 +40,7 @@
         </a>
         <button onclick="window.print()"
             class="flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold text-white hover:opacity-90 transition-opacity"
-            style="background: linear-gradient(135deg, #7C3AED, #4F46E5)">
+            style="background: #1d4ed8">
             <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                     d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
@@ -63,7 +63,7 @@
 
         {{-- Header --}}
         <div class="px-10 py-8 text-white"
-            style="background: linear-gradient(135deg, #2D0B6B 0%, #4C1D95 50%, #0d0000 100%)">
+            style="background: #1e3a5f">
             <div class="flex items-start justify-between">
                 <div class="flex items-center gap-4">
                     <div
@@ -75,13 +75,13 @@
                     </div>
                     <div>
                         <h1 class="text-lg font-bold">Dido Hotel</h1>
-                        <p class="text-purple-200 text-xs mt-0.5">Hotel Management System</p>
+                        <p class="text-blue-200 text-xs mt-0.5">Hotel Management System</p>
                     </div>
                 </div>
                 <div class="text-right">
-                    <p class="text-purple-200 text-xs uppercase tracking-widest mb-1">Invoice</p>
+                    <p class="text-blue-200 text-xs uppercase tracking-widest mb-1">Invoice</p>
                     <p class="text-2xl font-bold font-mono">{{ $booking->booking_code }}</p>
-                    <p class="text-purple-200 text-xs mt-1">
+                    <p class="text-blue-200 text-xs mt-1">
                         {{ $booking->created_at->format('d M Y') }}
                     </p>
                 </div>
@@ -232,7 +232,7 @@
                 {{-- Grand Total --}}
                 <div class="flex justify-between items-center pt-3 border-t border-gray-200">
                     <span class="text-base font-bold text-gray-900">GRAND TOTAL</span>
-                    <span class="text-2xl font-bold" style="color: #6D28D9">
+                    <span class="text-2xl font-bold" style="color: #1d4ed8">
                         Rp {{ number_format((float) $booking->total_price + (float) $fnbTotal, 0, ',', '.') }}
                     </span>
                 </div>

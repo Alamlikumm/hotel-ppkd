@@ -5,7 +5,7 @@
 @section('topbar-actions')
 <button onclick="document.getElementById('modal-user').classList.remove('hidden')"
         class="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-semibold text-white transition-all duration-200 hover:opacity-90 active:scale-95"
-        style="background: linear-gradient(135deg, #7C3AED, #4F46E5)">
+        style="background: #1d4ed8">
     <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
     </svg>
@@ -18,16 +18,16 @@
 {{-- Role Summary Cards --}}
 <div class="grid grid-cols-3 gap-4 mb-6">
     @php
-    $roleColors = ['superadmin' => 'purple', 'admin_hotel' => 'blue', 'admin_fnb' => 'green'];
+    $roleColors = ['superadmin' => 'blue', 'admin_hotel' => 'blue', 'admin_fnb' => 'green'];
     $roleLabels = ['superadmin' => 'Super Admin', 'admin_hotel' => 'Admin Hotel', 'admin_fnb' => 'Admin F&B'];
     $roleDesc   = ['superadmin' => 'Akses penuh semua modul', 'admin_hotel' => 'Kamar, booking, ulasan', 'admin_fnb' => 'Menu & order F&B'];
     @endphp
     @foreach($roleColors as $slug => $color)
     <div class="bg-white dark:bg-white/4 border border-gray-100 dark:border-white/8 rounded-2xl p-5
-                border-t-2 {{ $color === 'purple' ? 'border-t-purple-500' : ($color === 'blue' ? 'border-t-blue-500' : 'border-t-green-500') }}">
+                border-t-2 {{ $color === 'blue' ? 'border-t-blue-500' : 'border-t-green-500' }}">
         <div class="flex items-center gap-3 mb-3">
             <div class="w-9 h-9 rounded-xl flex items-center justify-center text-white text-xs font-bold
-                        {{ $color === 'purple' ? 'bg-purple-500' : ($color === 'blue' ? 'bg-blue-500' : 'bg-green-500') }}">
+                        {{ $color === 'blue' ? 'bg-blue-500' : 'bg-green-500' }}">
                 {{ strtoupper(substr($slug, 0, 2)) }}
             </div>
             <div>
@@ -35,7 +35,7 @@
                 <p class="text-xs text-gray-400 dark:text-white/30">{{ $roleDesc[$slug] }}</p>
             </div>
         </div>
-        <p class="text-2xl font-bold {{ $color === 'purple' ? 'text-purple-600 dark:text-purple-400' : ($color === 'blue' ? 'text-blue-600 dark:text-blue-400' : 'text-green-600 dark:text-green-400') }}">
+        <p class="text-2xl font-bold {{ $color === 'blue' ? 'text-blue-600 dark:text-blue-400' : 'text-green-600 dark:text-green-400' }}">
             {{ $users->where('role.slug', $slug)->count() }}
             <span class="text-sm font-normal text-gray-400 dark:text-white/30">User</span>
         </p>
@@ -61,7 +61,7 @@
                 <td class="px-5 py-3.5">
                     <div class="flex items-center gap-3">
                         <div class="w-8 h-8 rounded-lg flex items-center justify-center text-white text-xs font-semibold flex-shrink-0"
-                             style="background: linear-gradient(135deg, #5e2eb2, #03030b)">
+                             style="background: #1e3a5f">
                             {{ strtoupper(substr($user->name, 0, 2)) }}
                         </div>
                         <span class="text-sm font-medium text-gray-800 dark:text-white">{{ $user->name }}</span>
@@ -71,7 +71,7 @@
                 <td class="px-5 py-3.5">
                     @php
                     $roleStyle = match($user->role->slug) {
-                        'superadmin'  => 'bg-purple-50 dark:bg-purple-500/15 text-purple-700 dark:text-purple-300',
+                        'superadmin'  => 'bg-blue-50 dark:bg-blue-500/15 text-blue-700 dark:text-blue-300',
                         'admin_hotel' => 'bg-blue-50 dark:bg-blue-500/15 text-blue-700 dark:text-blue-300',
                         'admin_fnb'   => 'bg-green-50 dark:bg-green-500/15 text-green-700 dark:text-green-300',
                         default       => 'bg-gray-100 text-gray-500',
@@ -131,7 +131,7 @@
                        class="w-full px-4 py-2.5 rounded-xl text-sm border border-gray-200 dark:border-white/10
                               bg-white dark:bg-white/5 text-gray-800 dark:text-white
                               placeholder:text-gray-300 dark:placeholder:text-white/20
-                              focus:outline-none focus:ring-2 focus:ring-purple-500/30 transition duration-200">
+                              focus:outline-none focus:ring-2 focus:ring-blue-500/30 transition duration-200">
             </div>
             <div>
                 <label class="block text-xs font-semibold text-gray-500 dark:text-white/40 uppercase tracking-wider mb-2">Email</label>
@@ -139,7 +139,7 @@
                        class="w-full px-4 py-2.5 rounded-xl text-sm border border-gray-200 dark:border-white/10
                               bg-white dark:bg-white/5 text-gray-800 dark:text-white
                               placeholder:text-gray-300 dark:placeholder:text-white/20
-                              focus:outline-none focus:ring-2 focus:ring-purple-500/30 transition duration-200">
+                              focus:outline-none focus:ring-2 focus:ring-blue-500/30 transition duration-200">
             </div>
             <div>
                 <label class="block text-xs font-semibold text-gray-500 dark:text-white/40 uppercase tracking-wider mb-2">Password</label>
@@ -147,7 +147,7 @@
                        class="w-full px-4 py-2.5 rounded-xl text-sm border border-gray-200 dark:border-white/10
                               bg-white dark:bg-white/5 text-gray-800 dark:text-white
                               placeholder:text-gray-300 dark:placeholder:text-white/20
-                              focus:outline-none focus:ring-2 focus:ring-purple-500/30 transition duration-200">
+                              focus:outline-none focus:ring-2 focus:ring-blue-500/30 transition duration-200">
             </div>
             <div>
                 <label class="block text-xs font-semibold text-gray-500 dark:text-white/40 uppercase tracking-wider mb-2">Confirm Password</label>
@@ -155,14 +155,14 @@
                        class="w-full px-4 py-2.5 rounded-xl text-sm border border-gray-200 dark:border-white/10
                               bg-white dark:bg-white/5 text-gray-800 dark:text-white
                               placeholder:text-gray-300 dark:placeholder:text-white/20
-                              focus:outline-none focus:ring-2 focus:ring-purple-500/30 transition duration-200">
+                              focus:outline-none focus:ring-2 focus:ring-blue-500/30 transition duration-200">
             </div>
             <div>
                 <label class="block text-xs font-semibold text-gray-500 dark:text-white/40 uppercase tracking-wider mb-2">Roles</label>
                 <select name="role_id"
                         class="w-full px-4 py-2.5 rounded-xl text-sm border border-gray-200 dark:border-white/10
                                bg-white dark:bg-white/5 text-gray-800 dark:text-white
-                               focus:outline-none focus:ring-2 focus:ring-purple-500/30 transition duration-200">
+                               focus:outline-none focus:ring-2 focus:ring-blue-500/30 transition duration-200">
                     <option value="">Select Roles</option>
                     @foreach(\App\Models\Role::all() as $role)
                     <option value="{{ $role->id }}">{{ $role->name }}</option>
@@ -172,7 +172,7 @@
             <div class="flex gap-3 pt-2">
                 <button type="submit"
                         class="flex-1 py-2.5 rounded-xl text-sm font-semibold text-white hover:opacity-90 transition-opacity"
-                        style="background: linear-gradient(135deg, #150a29, #0b0a20)">
+                        style="background: #0f172a">
                     Simpan
                 </button>
                 <button type="button"
