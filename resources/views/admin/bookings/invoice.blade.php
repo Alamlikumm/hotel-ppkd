@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Invoice {{ $booking->booking_code }} — Dido Hotel</title>
+    <title>Invoice {{ $booking->booking_code }} — Dido's Hotel</title>
     @vite(['resources/css/app.css'])
     <style>
         @media print {
@@ -74,7 +74,7 @@
                         <span class="hidden text-white text-2xl">✦</span>
                     </div>
                     <div>
-                        <h1 class="text-lg font-bold">Dido Hotel</h1>
+                        <h1 class="text-lg font-bold">Dido's Hotel</h1>
                         <p class="text-blue-200 text-xs mt-0.5">Hotel Management System</p>
                     </div>
                 </div>
@@ -241,7 +241,7 @@
             {{-- Footer Invoice --}}
             <div class="mt-8 pt-6 border-t border-gray-100 text-center">
                 <p class="text-xs text-gray-400">
-                    Thank You For Staying At <strong>Dido Hotel</strong>
+                    Thank You For Staying At <strong>Dido's Hotel</strong>
                 </p>
                 <p class="text-xs text-gray-300 mt-1">
                     This Invoice Is Generated Automatically On {{ now()->format('d M Y, H:i') }} WIB

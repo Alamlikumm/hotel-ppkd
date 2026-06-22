@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 @section('title', 'Room Management')
-@section('subtitle', 'Room Availability Status Dido Hotel')
+@section('subtitle', "Room Availability Status Dido's Hotel")
 
 @section('topbar-actions')
 <a href="{{ route('admin.rooms.create') }}"

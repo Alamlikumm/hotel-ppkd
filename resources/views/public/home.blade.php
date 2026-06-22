@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dido Hotel</title>
+    <title>Dido's Hotel</title>
     @vite(['resources/css/app.css'])
 
     <style>
@@ -68,7 +68,7 @@
             </div>
 
             <span class="text-sm font-semibold">
-                Dido Hotel
+                Dido's Hotel
             </span>
         </div>
 
@@ -347,11 +347,11 @@ Choose From a Variety Of Room Types Tailored To Your Needs.
                     alt="Logo">
             </div>
 
-            <span class="text-sm font-medium text-white/60">Dido Hotel</span>
+            <span class="text-sm font-medium text-white/60">Dido's Hotel</span>
         </div>
 
         <p class="text-xs text-white/30">
-            © 2026 Dido Hotel. All Rights Reserved.
+            © 2026 Dido's Hotel. All Rights Reserved.
         </p>
 
         <a href="{{ route('login') }}"

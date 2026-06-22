@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Book Room {{ $room->room_number }} — Dido Hotel</title>
+    <title>Book Room {{ $room->room_number }} — Dido's Hotel</title>
     @vite(['resources/css/app.css'])
 </head>
 
@@ -18,7 +18,7 @@
                     <img src="{{ asset('images/logo.png') }}" onerror="this.style.display='none'"
                         class="w-full h-full object-cover" alt="Logo">
                 </div>
-                <span class="text-sm font-semibold">Dido Hotel</span>
+                <span class="text-sm font-semibold">Dido's Hotel</span>
             </a>
 
             <a href="{{ route('rooms') }}" class="text-sm text-white/50 hover:text-white transition-colors">

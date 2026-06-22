@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 @section('title', 'Order F&B')
-@section('subtitle', 'Manage Incoming Orders Dido Hotel')
+@section('subtitle', "Manage Incoming Orders Dido's Hotel")
 
 @section('content')
 
@@ -30,7 +30,7 @@
                 <div class="space-y-1 mb-3">
                     @foreach($order->items as $item)
                     <div class="flex justify-between text-xs text-gray-500 dark:text-white/40">
-                        <span>{{ $item->menu->name }} x{{ $item->quantity }}</span>
+                        <span>{{ $item->menu?->name }} x {{ $item->quantity }}</span>
                         <span>Rp {{ number_format($item->subtotal, 0, ',', '.') }}</span>
                     </div>
                     @endforeach

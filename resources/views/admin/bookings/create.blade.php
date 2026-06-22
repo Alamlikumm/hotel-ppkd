@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 @section('title', 'Booking Walk-in')
-@section('subtitle', 'Dido Hotel — Receptionist')
+@section('subtitle', "Dido's Hotel — Receptionist")
 
 @section('content')
 
@@ -41,7 +41,7 @@ There Is An Input Error:
                         Full Name <span class="text-red-400">*</span>
                     </label>
                     <input type="text" name="guest_name" value="{{ old('guest_name') }}"
-                           placeholder="Nama tamu walk-in"
+                           placeholder="Walk-in Guest Name"
                            class="w-full px-4 py-2.5 rounded-xl text-sm border
                                   {{ $errors->has('guest_name') ? 'border-red-400' : 'border-gray-200 dark:border-white/10' }}
                                   bg-white dark:bg-white/5 text-gray-800 dark:text-white

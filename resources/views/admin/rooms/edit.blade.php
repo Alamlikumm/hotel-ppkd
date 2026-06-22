@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 @section('title', 'Edit Kamar ' . $room->room_number)
-@section('subtitle', 'Dido Hotel')
+@section('subtitle', "Dido's Hotel")
 
 @section('content')
 <div class="max-w-xl">

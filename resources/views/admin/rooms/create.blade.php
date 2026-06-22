@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 @section('title', 'Add Kamar')
-@section('subtitle', 'Dido Hotel')
+@section('subtitle', "Dido's Hotel")
 
 @section('content')
 <div class="max-w-xl">

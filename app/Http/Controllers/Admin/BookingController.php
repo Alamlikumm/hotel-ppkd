@@ -105,7 +105,10 @@ class BookingController extends Controller
         if ($request->status === 'checked_out') {
             $data['payment_status'] = 'paid';
             $data['paid_at'] = now();
-            $booking->room->update(['status' => 'available']);
+            $booking->room->update([
+                'status' => 'maintenance',
+                'notes' => 'Dirty - requires cleaning and checkout inspection.',
+            ]);
         }
 
         if ($request->status === 'cancelled') {

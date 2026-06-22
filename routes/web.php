@@ -1,17 +1,17 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\Admin\DashboardController;
-use App\Http\Controllers\Admin\RoomController;
 use App\Http\Controllers\Admin\BookingController;
+use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\FnbMenuController;
 use App\Http\Controllers\Admin\FnbOrderController;
+use App\Http\Controllers\Admin\HousekeepingController;
 use App\Http\Controllers\Admin\ReviewController;
+use App\Http\Controllers\Admin\RoomController;
 use App\Http\Controllers\Admin\UserController;
-use App\Http\Controllers\Public\HomeController;
+use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Public\BookingController as PublicBookingController;
-
+use App\Http\Controllers\Public\HomeController;
+use Illuminate\Support\Facades\Route;
 
 // ── Halaman Publik ──
 Route::get('/', function () {
@@ -38,7 +38,6 @@ Route::get('/kamar', [HomeController::class, 'rooms'])->name('rooms');
 Route::get('/kamar/{room}/pesan', [PublicBookingController::class, 'create'])->name('booking.create');
 Route::post('/kamar/{room}/pesan', [PublicBookingController::class, 'store'])->name('booking.store');
 Route::get('/booking/sukses/{booking}', [PublicBookingController::class, 'success'])->name('booking.success');
-
 
 // ── Admin Panel ──
 Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () {
@@ -83,6 +82,15 @@ Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () 
             ->name('fnb-orders.store');
         Route::patch('fnb-orders/{fnbOrder}/status', [FnbOrderController::class, 'updateStatus'])
             ->name('fnb-orders.updateStatus');
+    });
+
+    // ── Superadmin + Housekeeping ──
+    Route::middleware('role:superadmin,housekeeping')->group(function () {
+        // Housekeeping
+        Route::get('housekeeping', [HousekeepingController::class, 'index'])
+            ->name('housekeeping.index');
+        Route::patch('housekeeping/rooms/{room}/status', [HousekeepingController::class, 'updateRoomStatus'])
+            ->name('housekeeping.updateRoomStatus');
     });
 
     // ── Superadmin Only ──

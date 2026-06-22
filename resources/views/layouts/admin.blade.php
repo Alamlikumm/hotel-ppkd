@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@yield('title', 'Dashboard') — Dido Hotel</title>
+    <title>@yield('title', 'Dashboard') — Dido's Hotel</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </head>
@@ -29,7 +29,7 @@
                         </div>
                     </div>
                     <div>
-                        <div class="text-white text-sm font-semibold leading-tight">Dido Hotel</div>
+                        <div class="text-white text-sm font-semibold leading-tight">Dido's Hotel</div>
                         <div class="text-blue-400 text-xs mt-0.5">Hotel Management</div>
                     </div>
                 </div>
@@ -80,7 +80,7 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"
                                 d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                         </svg>
-                        Booking
+                    Reservation
                     </a>
                     <a href="{{ route('admin.reviews.index') }}"
                         class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm transition-all duration-200
@@ -121,6 +121,24 @@
                                 d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 14l2 2 4-4" />
                         </svg>
                         Order F&amp;B
+                    </a>
+                @endif
+
+                {{-- Housekeeping — tampil untuk superadmin & housekeeping --}}
+                @if (in_array(auth()->user()->role->slug, ['superadmin', 'housekeeping']))
+                    <p class="px-3 pt-4 mb-2 text-[10px] font-semibold text-blue-400/60 uppercase tracking-widest">
+                        Housekeeping
+                    </p>
+                    <a href="{{ route('admin.housekeeping.index') }}"
+                        class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm transition-all duration-200
+              {{ request()->routeIs('admin.housekeeping*')
+                  ? 'bg-white/15 text-white font-medium shadow-sm'
+                  : 'text-blue-300/70 hover:bg-white/8 hover:text-white' }}">
+                        <svg class="w-4 h-4 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"
+                                d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                        </svg>
+                        Housekeeping
                     </a>
                 @endif
 
@@ -184,7 +202,7 @@
                         @yield('title', 'Dashboard')
                     </h1>
                     <p class="text-xs text-gray-400 dark:text-white/30 mt-0.5">
-                        @yield('subtitle', 'Dido Hotel Management System')
+                        @yield('subtitle', "Dido's Hotel Management System")
                     </p>
                 </div>
                 <div class="flex items-center gap-2">

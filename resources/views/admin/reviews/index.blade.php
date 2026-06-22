@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 @section('title', 'Guest Reviews')
-@section('subtitle', 'Reviews From Guests Dido Hotel')
+@section('subtitle', "Reviews From Guests Dido's Hotel")
 
 @section('content')
 
@@ -68,7 +68,7 @@
         @else
         <form method="POST" action="{{ route('admin.reviews.reply', $review) }}" class="flex gap-2 mt-3">
             @csrf @method('PATCH')
-            <input type="text" name="admin_reply" placeholder="Tulis balasan..."
+            <input type="text" name="admin_reply" placeholder="Write a Reply..."
                    class="flex-1 px-4 py-2 rounded-xl text-sm border border-gray-200 dark:border-white/10
                           bg-gray-50 dark:bg-white/5 text-gray-800 dark:text-white
                           placeholder:text-gray-300 dark:placeholder:text-white/20

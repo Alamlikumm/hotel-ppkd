@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 @section('title', 'Booking ' . $booking->booking_code)
-@section('subtitle', 'Dido Hotel')
+@section('subtitle', "Dido's Hotel")
 
 @section('topbar-actions')
     <a href="{{ route('admin.bookings.invoice', $booking) }}"

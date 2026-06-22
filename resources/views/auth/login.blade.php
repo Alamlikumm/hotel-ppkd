@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login — Dido Hotel</title>
+    <title>Login — Dido's Hotel</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <style>
         @keyframes float {
@@ -101,7 +101,7 @@
                     <span class="text-blue-300 text-lg hidden">✦</span>
                 </div>
                 <span class="text-white/80 text-sm font-medium tracking-widest uppercase">
-                    Dido Hotel
+                    Dido's Hotel
                 </span>
             </div>
         </div>
@@ -144,7 +144,7 @@
 
         <div class="fade-up-4">
             <p class="text-white/20 text-xs">
-                © 2026 Dido Hotel. All rights reserved.
+                © 2026 Dido's Hotel. All rights reserved.
             </p>
         </div>
     </div>
@@ -165,7 +165,7 @@
                                  onerror="this.style.display='none'"
                                  class="w-5 h-5 object-contain" alt="Logo">
                         </div>
-                        <span class="text-white/70 text-sm font-medium">Dido Hotel</span>
+                        <span class="text-white/70 text-sm font-medium">Dido's Hotel</span>
                     </div>
 
                     {{-- Header --}}
@@ -291,7 +291,7 @@
                     {{-- Footer --}}
                     <div class="mt-8 pt-6 border-t border-white/5 text-center">
                         <p class="text-white/20 text-xs">
-                            Dido Hotel Management System v1.0
+                            Dido's Hotel Management System v1.0
                         </p>
                     </div>
                 </div>
