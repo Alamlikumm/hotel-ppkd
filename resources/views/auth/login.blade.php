@@ -84,7 +84,6 @@
     <div class="absolute bottom-[35%] left-[15%] float-2 opacity-10">
         <div class="w-24 h-24 border-2 border-blue-500/20 rounded-full rotate-slow"></div>
     </div>
-</div>
 
 {{-- ── Main Content ── --}}
 <div class="relative z-10 min-h-screen flex">
@@ -179,7 +178,6 @@
                         </div>
                         <h2 class="text-2xl font-bold text-white mt-4">Welcome</h2>
                         <p class="text-white/40 text-sm mt-1">Login To the Hotel Administration Panel</p>
-                    </div>
 
                     {{-- Error Alert --}}
                     @if ($errors->any())

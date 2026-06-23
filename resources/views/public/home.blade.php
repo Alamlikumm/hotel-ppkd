@@ -192,72 +192,75 @@
 
 
 {{-- ── ROOM TYPES ── --}}
-
-Room Selection
-
-Find Your Dream Room
-
-Choose From a Variety Of Room Types Tailored To Your Needs.
-
-<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-    @foreach($roomTypes as $type)
-        <div
-            class="group relative bg-white/4 border border-white/8 rounded-2xl overflow-hidden
-                                        hover:border-blue-500/30 hover:bg-white/6 transition-all duration-300">
-
-            {{-- Image placeholder --}}
-            <div class="h-48 relative overflow-hidden bg-zinc-950">
-
-                @if($type->thumbnail)
-                    <img src="{{ asset('storage/' . $type->thumbnail) }}" alt="{{ $type->name }}"
-                        class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                @else
-                    <div class="w-full h-full flex items-center justify-center">
-                        <span class="text-5xl opacity-30">🛏️</span>
-                    </div>
-                @endif
-
-                <div class="absolute inset-0 bg-black/40"></div>
-
-                <div class="absolute bottom-3 left-4">
-                    <span class="text-xs px-2.5 py-1 rounded-full bg-blue-600/80 text-white font-medium">
-                        {{ $type->rooms_count }} rooms available
-                    </span>
-                </div>
-            </div>
-
-            <div class="p-5">
-                <h3 class="text-lg font-semibold mb-1">{{ $type->name }}</h3>
-                <p class="text-white/40 text-sm mb-4 leading-relaxed">{{ $type->description }}</p>
-
-                {{-- Facilities --}}
-                @if($type->facilities)
-                    <div class="flex flex-wrap gap-2 mb-5">
-                        @foreach(array_slice($type->facilities, 0, 4) as $facility)
-                            <span class="text-xs px-2.5 py-1 rounded-lg bg-white/5 text-white/50 border border-white/8">
-                                {{ $facility }}
-                            </span>
-                        @endforeach
-                    </div>
-                @endif
-
-                <div class="flex items-center justify-between">
-                    <div>
-                        <span class="text-xl font-bold text-blue-400">
-                            Rp {{ number_format($type->price_per_night, 0, ',', '.') }}
-                        </span>
-                        <span class="text-xs text-white/30">/night</span>
-                    </div>
-
-                    <a href="{{ route('rooms') }}"
-                        class="px-4 py-2 rounded-xl text-xs font-semibold text-white transition-all bg-blue-600 hover:bg-blue-700">
-                        Book Now
-                    </a>
-                </div>
-            </div>
+<section id="kamar" class="py-20 px-6 border-t border-white/5">
+    <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-12">
+            <p class="text-blue-400 text-sm font-medium tracking-widest uppercase mb-3">Room Selection</p>
+            <h2 class="text-3xl font-bold">Find Your Dream Room</h2>
+            <p class="text-white/40 text-sm mt-2">Choose From a Variety Of Room Types Tailored To Your Needs.</p>
         </div>
-    @endforeach
-</div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            @foreach($roomTypes as $type)
+                <div
+                    class="group relative bg-white/4 border border-white/8 rounded-2xl overflow-hidden
+                                                hover:border-blue-500/30 hover:bg-white/6 transition-all duration-300">
+
+                    {{-- Image placeholder --}}
+                    <div class="h-48 relative overflow-hidden bg-zinc-950">
+
+                        @if($type->thumbnail)
+                            <img src="{{ asset('storage/' . $type->thumbnail) }}" alt="{{ $type->name }}"
+                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        @else
+                            <div class="w-full h-full flex items-center justify-center">
+                                <span class="text-5xl opacity-30">🛏️</span>
+                            </div>
+                        @endif
+
+                        <div class="absolute inset-0 bg-black/40"></div>
+
+                        <div class="absolute bottom-3 left-4">
+                            <span class="text-xs px-2.5 py-1 rounded-full bg-blue-600/80 text-white font-medium">
+                                {{ $type->rooms_count }} rooms available
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="p-5">
+                        <h3 class="text-lg font-semibold mb-1">{{ $type->name }}</h3>
+                        <p class="text-white/40 text-sm mb-4 leading-relaxed">{{ $type->description }}</p>
+
+                        {{-- Facilities --}}
+                        @if($type->facilities)
+                            <div class="flex flex-wrap gap-2 mb-5">
+                                @foreach(array_slice($type->facilities, 0, 4) as $facility)
+                                    <span class="text-xs px-2.5 py-1 rounded-lg bg-white/5 text-white/50 border border-white/8">
+                                        {{ $facility }}
+                                    </span>
+                                @endforeach
+                            </div>
+                        @endif
+
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <span class="text-xl font-bold text-blue-400">
+                                    Rp {{ number_format($type->price_per_night, 0, ',', '.') }}
+                                </span>
+                                <span class="text-xs text-white/30">/night</span>
+                            </div>
+
+                            <a href="{{ route('rooms') }}"
+                                class="px-4 py-2 rounded-xl text-xs font-semibold text-white transition-all bg-blue-600 hover:bg-blue-700">
+                                Book Now
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            @endforeach
+        </div>
+    </div>
+</section>
 
 {{-- ── FACILITIES ── --}}
 <section id="fasilitas" class="py-20 px-6 border-t border-white/5">
