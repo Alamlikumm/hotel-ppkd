@@ -8,10 +8,10 @@
 <div class="grid grid-cols-4 gap-4 mb-6">
     @php
     $metrics = [
-        ['label' => 'Rooms Total',      'value' => $stats['total_rooms'],     'color' => 'sky', 'sub' => '3 tipe kamar'],
-        ['label' => 'Rooms Available',   'value' => $stats['available_rooms'], 'color' => 'green',  'sub' => 'siap dipesan'],
-        ['label' => 'Active Booking',    'value' => $stats['active_bookings'], 'color' => 'blue',   'sub' => 'hari ini'],
-        ['label' => 'Revenue Today', 'value' => 'Rp '.number_format($stats['revenue_today'],0,',','.'), 'color' => 'amber', 'sub' => 'total pendapatan'],
+        ['label' => 'Rooms Total',      'value' => $stats['total_rooms'],     'color' => 'sky', 'sub' => '3 Types Of Rooms'],
+        ['label' => 'Rooms Available',   'value' => $stats['available_rooms'], 'color' => 'green',  'sub' => 'Ready To Order'],
+        ['label' => 'Active Booking',    'value' => $stats['active_bookings'], 'color' => 'blue',   'sub' => 'Today'],
+        ['label' => 'Revenue Today', 'value' => 'Rp '.number_format($stats['revenue_today'],0,',','.'), 'color' => 'amber', 'sub' => 'Total Income'],
     ];
     $colors = [
         'sky'    => ['bg' => 'bg-sky-50 dark:bg-sky-500/10',     'text' => 'text-sky-700 dark:text-sky-300',     'border' => 'border-sky-100 dark:border-sky-500/20',     'dot' => 'bg-sky-500'],
