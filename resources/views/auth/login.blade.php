@@ -287,7 +287,10 @@
                     </form>
 
                     {{-- Footer --}}
-                    <div class="mt-8 pt-6 border-t border-white/5 text-center">
+                    <div class="mt-8 pt-6 border-t border-white/5 text-center space-y-2">
+                        <p class="text-white/40 text-xs">
+                            Don't have an account? <a href="{{ route('register') }}" class="text-blue-400 hover:underline">Register here</a>
+                        </p>
                         <p class="text-white/20 text-xs">
                             Dido's Hotel Management System v1.0
                         </p>

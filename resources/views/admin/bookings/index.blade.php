@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title', 'Manajemen Booking')
+@section('title', 'Management Booking')
 @section('subtitle', "Manage all Reservations Dido's Hotel")
 
 @section('topbar-actions')
@@ -106,15 +106,13 @@
                                           transition-colors duration-150">
                                     Details
                                 </a>
-                                <form method="POST" action="{{ route('admin.bookings.destroy', $booking) }}"
-                                    onsubmit="return confirm('Hapus booking ini?')">
-                                    @csrf @method('DELETE')
-                                    <button type="submit" class="text-xs px-3 py-1.5 rounded-lg border border-red-200 dark:border-red-500/20
-                                                   text-red-500 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-500/10
-                                                   transition-colors duration-150">
-                                        Delete
-                                    </button>
-                                </form>
+                                 <a href="{{ route('admin.bookings.destroy', $booking) }}"
+                                     data-confirm-delete="true"
+                                     class="text-xs px-3 py-1.5 rounded-lg border border-red-200 dark:border-red-500/20
+                                            text-red-500 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-500/10
+                                            transition-colors duration-150">
+                                     Delete
+                                 </a>
                             </div>
                         </td>
                     </tr>

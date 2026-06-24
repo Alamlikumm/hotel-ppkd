@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\FnbMenu;
 use App\Models\FnbOrder;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class FnbOrderController extends Controller
 {
@@ -57,6 +58,8 @@ class FnbOrderController extends Controller
 
         $order->items()->createMany($orderItems);
 
+        Alert::success('Success', "Order {$order->order_code} Created Successfully.");
+
         return back()->with('success', "Order {$order->order_code} Created Successfully.");
     }
 
@@ -67,6 +70,8 @@ class FnbOrderController extends Controller
         ]);
 
         $fnbOrder->update(['status' => $request->status]);
+
+        Alert::success('Success', 'Order Status Successfully Updated.');
 
         return back()->with('success', 'Order Status Successfully Updated.');
     }

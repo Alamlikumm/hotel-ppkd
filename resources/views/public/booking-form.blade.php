@@ -21,9 +21,41 @@
                 <span class="text-sm font-semibold">Dido's Hotel</span>
             </a>
 
-            <a href="{{ route('rooms') }}" class="text-sm text-white/50 hover:text-white transition-colors">
-                ← Choose Another Room
-            </a>
+            <div class="flex items-center gap-2 sm:gap-4">
+                @auth
+                    <span class="text-xs text-white/50 hidden md:inline">
+                        Hi, <span class="font-medium text-white">{{ auth()->user()->name }}</span>
+                    </span>
+                    <a href="{{ route('admin.dashboard') }}" class="text-xs px-2.5 py-1.5 sm:px-3 sm:py-1.5 rounded-lg bg-white/5 border border-white/10 hover:bg-white/10 text-white transition-colors flex items-center gap-1">
+                        <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v4a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v4a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v4a2 2 0 01-2 2H6a2 2 0 01-2-2v-4zM14 16a2 2 0 012-2h2a2 2 0 012 2v4a2 2 0 01-2 2h-2a2 2 0 01-2-2v-4z" />
+                        </svg>
+                        <span class="hidden sm:inline">Dashboard</span>
+                    </a>
+                    <form method="POST" action="{{ route('logout') }}" class="inline">
+                        @csrf
+                        <button type="submit" class="text-xs px-2.5 py-1.5 sm:px-3 sm:py-1.5 rounded-lg bg-red-500/10 border border-red-500/20 hover:bg-red-500/20 text-red-400 transition-colors flex items-center gap-1">
+                            <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+                            </svg>
+                            <span class="hidden sm:inline">Logout</span>
+                        </button>
+                    </form>
+                @else
+                    <a href="{{ route('login') }}" class="text-xs px-2.5 py-1.5 sm:px-3 sm:py-1.5 rounded-lg bg-blue-500/10 border border-blue-500/20 hover:bg-blue-500/20 text-blue-400 transition-colors flex items-center gap-1">
+                        <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+                        </svg>
+                        <span>Login</span>
+                    </a>
+                @endauth
+                <a href="{{ route('rooms') }}" class="text-xs text-white/50 hover:text-white transition-colors flex items-center gap-1">
+                    <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                    </svg>
+                    <span class="hidden sm:inline">Rooms</span>
+                </a>
+            </div>
         </div>
     </nav>
 
@@ -143,7 +175,7 @@
                             <input
                                 type="text"
                                 name="guest_name"
-                                value="{{ old('guest_name') }}"
+                                value="{{ old('guest_name', auth()->user() ? auth()->user()->name : '') }}"
                                 placeholder="Enter your full name"
                                 class="w-full px-4 py-3 rounded-xl text-sm bg-white/5 border border-white/10
                                        text-white placeholder:text-white/20
@@ -160,7 +192,7 @@
                             <input
                                 type="email"
                                 name="guest_email"
-                                value="{{ old('guest_email') }}"
+                                value="{{ old('guest_email', auth()->user() ? auth()->user()->email : '') }}"
                                 placeholder="example@email.com"
                                 class="w-full px-4 py-3 rounded-xl text-sm bg-white/5 border border-white/10
                                        text-white placeholder:text-white/20
@@ -186,7 +218,7 @@
                         </div>
 
                         {{-- Check In / Out --}}
-                        <div class="grid grid-cols-2 gap-3">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
 
                             <div>
                                 <label class="block text-xs font-semibold text-white/40 uppercase tracking-wider mb-2">

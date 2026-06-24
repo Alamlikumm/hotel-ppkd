@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\ReviewController;
 use App\Http\Controllers\Admin\RoomController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Public\BookingController as PublicBookingController;
 use App\Http\Controllers\Public\HomeController;
 use Illuminate\Support\Facades\Route;
@@ -25,6 +26,8 @@ Route::get('/', function () {
 Route::middleware('guest')->group(function () {
     Route::get('/login', [LoginController::class, 'showLogin'])->name('login');
     Route::post('/login', [LoginController::class, 'login']);
+    Route::get('/register', [RegisterController::class, 'showRegister'])->name('register');
+    Route::post('/register', [RegisterController::class, 'register']);
 });
 
 // log out nya
@@ -35,12 +38,15 @@ Route::post('/logout', [LoginController::class, 'logout'])
 // Halaman Publik
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/kamar', [HomeController::class, 'rooms'])->name('rooms');
-Route::get('/kamar/{room}/pesan', [PublicBookingController::class, 'create'])->name('booking.create');
-Route::post('/kamar/{room}/pesan', [PublicBookingController::class, 'store'])->name('booking.store');
-Route::get('/booking/sukses/{booking}', [PublicBookingController::class, 'success'])->name('booking.success');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/kamar/{room}/pesan', [PublicBookingController::class, 'create'])->name('booking.create');
+    Route::post('/kamar/{room}/pesan', [PublicBookingController::class, 'store'])->name('booking.store');
+    Route::get('/booking/sukses/{booking}', [PublicBookingController::class, 'success'])->name('booking.success');
+});
 
 // ── Admin Panel ──
-Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () {
+Route::prefix('admin')->name('admin.')->middleware(['auth', 'role:superadmin,resepsionis,admin_fnb,housekeeping'])->group(function () {
 
     // Dashboard — semua role bisa akses
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');

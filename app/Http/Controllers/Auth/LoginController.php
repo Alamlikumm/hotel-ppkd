@@ -46,6 +46,10 @@ class LoginController extends Controller
 
             Alert::success('Success', 'Login Successful');
 
+            if (Auth::user()->hasRole('tamu')) {
+                return redirect()->intended(route('home'));
+            }
+
             return redirect()->intended(route('admin.dashboard'));
         }
 

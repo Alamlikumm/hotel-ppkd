@@ -73,26 +73,52 @@
         </div>
 
 
-        <div class="hidden md:flex items-center gap-6 text-sm text-white/60">
+        <div class="flex items-center gap-4 sm:gap-6 text-sm text-white/60">
 
             <a href="#kamar"
-                class="hover:text-white transition-colors">
+                class="hidden sm:inline hover:text-white transition-colors">
                 Room
             </a>
 
             <a href="#fasilitas"
-                class="hover:text-white transition-colors">
+                class="hidden sm:inline hover:text-white transition-colors">
                 Facility
             </a>
 
             <a href="#ulasan"
-                class="hover:text-white transition-colors">
+                class="hidden sm:inline hover:text-white transition-colors">
                 Review
             </a>
 
+            @auth
+                <a href="{{ route('admin.dashboard') }}"
+                    class="text-xs px-2.5 py-1.5 sm:px-3 sm:py-1.5 rounded-lg bg-white/5 border border-white/10 hover:bg-white/10 text-white transition-colors flex items-center gap-1">
+                    <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v4a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v4a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v4a2 2 0 01-2 2H6a2 2 0 01-2-2v-4zM14 16a2 2 0 012-2h2a2 2 0 012 2v4a2 2 0 01-2 2h-2a2 2 0 01-2-2v-4z" />
+                    </svg>
+                    <span class="hidden sm:inline">Dashboard</span>
+                </a>
+                <form method="POST" action="{{ route('logout') }}" class="inline">
+                    @csrf
+                    <button type="submit" class="text-xs px-2.5 py-1.5 sm:px-3 sm:py-1.5 rounded-lg bg-red-500/10 border border-red-500/20 hover:bg-red-500/20 text-red-400 transition-colors flex items-center gap-1 cursor-pointer">
+                        <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+                        </svg>
+                        <span class="hidden sm:inline">Logout</span>
+                    </button>
+                </form>
+            @else
+                <a href="{{ route('login') }}"
+                    class="text-xs px-2.5 py-1.5 sm:px-3 sm:py-1.5 rounded-lg bg-blue-500/10 border border-blue-500/20 hover:bg-blue-500/20 text-blue-400 transition-colors flex items-center gap-1">
+                    <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+                    </svg>
+                    <span>Login</span>
+                </a>
+            @endauth
 
             <a href="{{ route('rooms') }}"
-                class="px-4 py-2 rounded-xl text-xs font-semibold text-white transition-all hover:opacity-90 bg-red-950 border border-red-800">
+                class="px-3 py-1.5 sm:px-4 sm:py-2 rounded-xl text-xs font-semibold text-white transition-all hover:opacity-90 bg-red-950 border border-red-800">
                 Book Now
             </a>
 

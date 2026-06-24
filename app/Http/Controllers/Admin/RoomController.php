@@ -19,6 +19,8 @@ class RoomController extends Controller
 
         $floors = Room::distinct()->pluck('floor')->sort();
 
+        confirmDelete('Delete Room!', 'Are you sure you want to delete this room?');
+
         return view('admin.rooms.index', compact('rooms', 'floors'));
     }
 

@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title', 'Manajemen Users')
+@section('title', 'Management Users')
 @section('subtitle', "Manage Accounts & Access Rights Dido's Hotel")
 
 @section('topbar-actions')
@@ -99,16 +99,13 @@
                                        transition-colors duration-150">
                             Edit
                         </button>
-                        <form method="POST" action="{{ route('admin.users.destroy', $user) }}"
-                              onsubmit="return confirm('Hapus user {{ $user->name }}?')">
-                            @csrf @method('DELETE')
-                            <button type="submit"
-                                    class="text-xs px-3 py-1.5 rounded-lg border border-red-200 dark:border-red-500/20
-                                           text-red-500 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-500/10
-                                           transition-colors duration-150">
-                                Delete
-                            </button>
-                        </form>
+                        <a href="{{ route('admin.users.destroy', $user) }}"
+                            data-confirm-delete="true"
+                            class="text-xs px-3 py-1.5 rounded-lg border border-red-200 dark:border-red-500/20
+                                   text-red-500 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-500/10
+                                   transition-colors duration-150">
+                            Delete
+                        </a>
                         @else
                         <span class="text-xs text-gray-300 dark:text-white/20">—</span>
                         @endif
@@ -279,14 +276,14 @@
     function openEditUser(id, name, email, roleId, isActive) {
         const modal = document.getElementById('modal-edit-user');
         const form = document.getElementById('form-edit-user');
-        
+
         form.action = `/admin/users/${id}`;
-        
+
         document.getElementById('edit-user-name').value = name;
         document.getElementById('edit-user-email').value = email;
         document.getElementById('edit-user-role').value = roleId;
         document.getElementById('edit-user-status').value = isActive;
-        
+
         modal.classList.remove('hidden');
     }
 </script>

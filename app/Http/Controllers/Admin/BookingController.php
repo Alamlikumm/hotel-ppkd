@@ -10,6 +10,7 @@ use App\Models\FnbOrder;
 use App\Models\Room;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class BookingController extends Controller
 {
@@ -18,6 +19,8 @@ class BookingController extends Controller
         $bookings = Booking::with(['room.roomType', 'handler', 'fnbOrders'])
             ->when($request->status, fn ($q) => $q->where('status', $request->status))
             ->latest()->paginate(15);
+
+        confirmDelete('Delete Booking!', 'Are you sure you want to delete this booking?');
 
         return view('admin.bookings.index', compact('bookings'));
     }
@@ -63,7 +66,8 @@ class BookingController extends Controller
             'total_nights' => $totalNights,
             'total_price' => $room->roomType->price_per_night * $totalNights,
             'status' => 'confirmed', // resepsionis langsung confirmed
-            'payment_status' => 'unpaid',
+            'payment_status' => 'paid',
+            'paid_at' => now(),
             'handled_by' => auth()->id(),
             'notes' => $validated['notes'] ?? null,
         ]);
@@ -80,6 +84,8 @@ class BookingController extends Controller
         if (! empty($fnbItems)) {
             $this->processFnbOrder($booking, $fnbItems);
         }
+
+        Alert::success('Success', "Booking {$booking->booking_code} Created Successfully.");
 
         return redirect()->route('admin.bookings.show', $booking)
             ->with('success', "Booking {$booking->booking_code} Created Successfully.");
@@ -102,6 +108,11 @@ class BookingController extends Controller
 
         $data = ['status' => $request->status];
 
+        if ($request->status === 'confirmed') {
+            $data['payment_status'] = 'paid';
+            $data['paid_at'] = now();
+        }
+
         if ($request->status === 'checked_out') {
             $data['payment_status'] = 'paid';
             $data['paid_at'] = now();
@@ -117,6 +128,8 @@ class BookingController extends Controller
 
         $booking->update($data);
 
+        Alert::success('Success', 'Booking Status Successfully Updated.');
+
         return back()->with('success', 'Booking Status Successfully Updated.');
     }
 
@@ -124,6 +137,8 @@ class BookingController extends Controller
     {
         $booking->room->update(['status' => 'available']);
         $booking->delete();
+
+        Alert::success('Success', 'Booking Has Been Successfully Deleted.');
 
         return redirect()->route('admin.bookings.index')
             ->with('success', 'Booking Has Been Successfully Deleted.');
@@ -143,6 +158,8 @@ class BookingController extends Controller
         }
 
         $this->processFnbOrder($booking, $fnbItems);
+
+        Alert::success('Success', 'F&B Order Successfully Added.');
 
         return back()->with('success', 'F&B Order Successfully Added.');
     }
