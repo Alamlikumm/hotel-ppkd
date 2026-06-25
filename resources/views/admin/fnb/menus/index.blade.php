@@ -47,7 +47,7 @@
                 <div
                     class="h-36 bg-blue-50/50 dark:bg-blue-900/10 relative overflow-hidden">
                     @if($menu->image)
-                        <img src="{{ asset('storage/' . $menu->image) }}" alt="{{ $menu->name }}"
+                        <img src="{{ str_starts_with($menu->image, 'images/') ? asset($menu->image) : asset('storage/' . $menu->image) }}" alt="{{ $menu->name }}"
                             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
                     @else
                         <div class="w-full h-full flex items-center justify-center">

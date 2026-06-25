@@ -37,7 +37,10 @@ class FnbMenuController extends Controller
         ]);
 
         if ($request->hasFile('image')) {
-            $validated['image'] = $request->file('image')->store('fnb', 'public');
+            $image = $request->file('image');
+            $filename = time().'_'.$image->getClientOriginalName();
+            $image->move(public_path('images/fnb'), $filename);
+            $validated['image'] = 'images/fnb/'.$filename;
         }
 
         FnbMenu::create([...$validated, 'created_by' => auth()->id()]);
@@ -60,9 +63,17 @@ class FnbMenuController extends Controller
 
         if ($request->hasFile('image')) {
             if ($fnbMenu->image) {
-                Storage::disk('public')->delete($fnbMenu->image);
+                $oldPath = public_path($fnbMenu->image);
+                if (file_exists($oldPath) && is_file($oldPath)) {
+                    @unlink($oldPath);
+                } else {
+                    Storage::disk('public')->delete($fnbMenu->image);
+                }
             }
-            $validated['image'] = $request->file('image')->store('fnb', 'public');
+            $image = $request->file('image');
+            $filename = time().'_'.$image->getClientOriginalName();
+            $image->move(public_path('images/fnb'), $filename);
+            $validated['image'] = 'images/fnb/'.$filename;
         }
 
         $fnbMenu->update($validated);
@@ -75,7 +86,12 @@ class FnbMenuController extends Controller
     public function destroy(FnbMenu $fnbMenu)
     {
         if ($fnbMenu->image) {
-            Storage::disk('public')->delete($fnbMenu->image);
+            $path = public_path($fnbMenu->image);
+            if (file_exists($path) && is_file($path)) {
+                @unlink($path);
+            } else {
+                Storage::disk('public')->delete($fnbMenu->image);
+            }
         }
         $fnbMenu->delete();
 
