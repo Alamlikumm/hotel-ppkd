@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Middleware\CheckRole;
+use App\Http\Middleware\NoCache;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
@@ -12,13 +14,15 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware): void {
+        $middleware->trustProxies(at: '*');
+
         // daftar middleware kasih code disini
         $middleware->alias([
-            'role' => \App\Http\Middleware\CheckRole::class,
-            'no-cache' => \App\Http\Middleware\NoCache::class,
+            'role' => CheckRole::class,
+            'no-cache' => NoCache::class,
         ]);
         // append NoCache middleware to the web group so authenticated pages are not cached
-        $middleware->web(append: [\App\Http\Middleware\NoCache::class]);
+        $middleware->web(append: [NoCache::class]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         $exceptions->shouldRenderJsonWhen(
