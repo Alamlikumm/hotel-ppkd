@@ -83,9 +83,9 @@
 
             {{-- Notes --}}
             <div class="mt-3 p-3 bg-gray-50 dark:bg-white/5 rounded-xl border border-gray-100 dark:border-white/5 min-h-[50px]">
-                <p class="text-[11px] font-semibold uppercase text-gray-400 dark:text-white/20 tracking-wider mb-1">Catatan Housekeeping</p>
+                <p class="text-[11px] font-semibold uppercase text-gray-400 dark:text-white/20 tracking-wider mb-1">Notes Housekeeping</p>
                 <p class="text-xs text-gray-600 dark:text-white/70 italic leading-relaxed">
-                    {{ $room->notes ?: 'Tidak ada catatan.' }}
+                    {{ $room->notes ?: 'No Records.' }}
                 </p>
             </div>
         </div>
@@ -96,8 +96,8 @@
                 <form method="POST" action="{{ route('admin.housekeeping.updateRoomStatus', $room) }}" class="flex-1">
                     @csrf
                     @method('PATCH')
-                    <input type="hidden" name="status" value="available">
-                    <input type="hidden" name="notes" value="Kamar telah dibersihkan dan siap digunakan.">
+                    <input type="hidden" name="status" value="Available">
+                    <input type="hidden" name="notes" value="The Room Has Been Cleaned And Is Ready For Use.">
                     <button type="submit" class="w-full py-2 rounded-xl text-xs font-semibold text-white bg-blue-600 hover:bg-blue-500 transition duration-200 active:scale-95 shadow-sm">
                         Finish Cleaning
                     </button>
@@ -142,7 +142,7 @@
 
             <div>
                 <label class="block text-xs font-semibold text-gray-500 dark:text-white/40 uppercase tracking-wider mb-2">Notes Housekeeping</label>
-                <textarea id="edit-room-notes" name="notes" rows="3" placeholder="Contoh: Lampu kamar mandi mati, AC kurang dingin, atau perlu tambahan amenities."
+                <textarea id="edit-room-notes" name="notes" rows="3" placeholder="Contoh: The Bathroom Light Is Out, The AC Isn't Cooling Enough, or Additional Amenities Are Needed."
                           class="w-full px-4 py-2.5 rounded-xl text-sm border border-gray-200 dark:border-white/10
                                  bg-white dark:bg-white/5 text-gray-800 dark:text-white
                                  placeholder:text-gray-300 dark:placeholder:text-white/20
