@@ -44,6 +44,7 @@ class BookingController extends Controller
             'check_in' => 'required|date|after_or_equal:today',
             'check_out' => 'required|date|after:check_in',
             'notes' => 'nullable|string',
+            'extra_bed' => 'nullable|boolean',
             'fnb_items' => 'nullable|array',
             'fnb_items.*.menu_id' => 'exists:fnb_menus,id',
             // 'fnb_items.*.qty'      => 'integer|min:1',
@@ -53,6 +54,10 @@ class BookingController extends Controller
         $checkIn = Carbon::parse($validated['check_in']);
         $checkOut = Carbon::parse($validated['check_out']);
         $totalNights = $checkIn->diffInDays($checkOut);
+
+        $extraBed = $request->boolean('extra_bed');
+        $extraBedPrice = $extraBed ? (100000 * $totalNights) : 0;
+        $totalPrice = ($room->roomType->price_per_night * $totalNights) + $extraBedPrice;
 
         // Buat booking
         $booking = Booking::create([
@@ -64,7 +69,9 @@ class BookingController extends Controller
             'check_in' => $validated['check_in'],
             'check_out' => $validated['check_out'],
             'total_nights' => $totalNights,
-            'total_price' => $room->roomType->price_per_night * $totalNights,
+            'total_price' => $totalPrice,
+            'extra_bed' => $extraBed,
+            'extra_bed_price' => $extraBedPrice,
             'status' => 'confirmed', // resepsionis langsung confirmed
             'payment_status' => 'paid',
             'paid_at' => now(),
@@ -216,5 +223,35 @@ class BookingController extends Controller
         ]);
 
         return view('admin.bookings.invoice', compact('booking'));
+    }
+
+    public function extend(Request $request, Booking $booking)
+    {
+        $request->validate([
+            'new_check_out' => 'required|date|after:'.$booking->check_out->format('Y-m-d'),
+        ]);
+
+        $newCheckOut = Carbon::parse($request->new_check_out);
+        $oldCheckOut = $booking->check_out;
+
+        $additionalNights = $oldCheckOut->diffInDays($newCheckOut);
+        $roomRate = $booking->room->roomType->price_per_night;
+
+        $additionalExtraBedPrice = 0;
+        if ($booking->extra_bed) {
+            $additionalExtraBedPrice = 100000 * $additionalNights;
+            $booking->extra_bed_price += $additionalExtraBedPrice;
+        }
+
+        $additionalPrice = ($roomRate * $additionalNights) + $additionalExtraBedPrice;
+
+        $booking->check_out = $newCheckOut;
+        $booking->total_nights += $additionalNights;
+        $booking->total_price += $additionalPrice;
+        $booking->save();
+
+        Alert::success('Success', "Booking Extended Successfully. Added {$additionalNights} night(s).");
+
+        return back()->with('success', 'Booking Extended Successfully.');
     }
 }

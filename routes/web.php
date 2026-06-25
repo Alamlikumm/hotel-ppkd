@@ -64,6 +64,8 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'role:superadmin,res
 
         Route::post('bookings/{booking}/add-fnb', [BookingController::class, 'addFnb'])
             ->name('bookings.addFnb');
+        Route::post('bookings/{booking}/extend', [BookingController::class, 'extend'])
+            ->name('bookings.extend');
         Route::get('bookings/{booking}/invoice', [BookingController::class, 'invoice'])
             ->name('bookings.invoice');
 

@@ -156,9 +156,30 @@
                                 Rp {{ number_format($booking->room->roomType->price_per_night, 0, ',', '.') }}
                             </td>
                             <td class="py-3 text-right text-sm font-semibold text-gray-800">
-                                Rp {{ number_format($booking->total_price, 0, ',', '.') }}
+                                Rp {{ number_format($booking->total_price - $booking->extra_bed_price, 0, ',', '.') }}
                             </td>
                         </tr>
+                        @if ($booking->extra_bed)
+                        <tr class="border-b border-gray-50">
+                            <td class="py-3">
+                                <p class="font-medium text-gray-800">
+                                    Extra Bed Fee
+                                </p>
+                                <p class="text-xs text-gray-400 mt-0.5">
+                                    Additional extra bed service
+                                </p>
+                            </td>
+                            <td class="py-3 text-right text-sm text-gray-600">
+                                {{ $booking->total_nights }} Night
+                            </td>
+                            <td class="py-3 text-right text-sm text-gray-600">
+                                Rp {{ number_format(100000, 0, ',', '.') }}
+                            </td>
+                            <td class="py-3 text-right text-sm font-semibold text-gray-800">
+                                Rp {{ number_format($booking->extra_bed_price, 0, ',', '.') }}
+                            </td>
+                        </tr>
+                        @endif
                     </tbody>
                 </table>
             </div>
@@ -213,8 +234,16 @@
                     {{-- Subtotal Kamar --}}
                     <div class="flex justify-between text-sm text-gray-600">
                         <span>Room Subtotal ({{ $booking->total_nights }} malam)</span>
-                        <span>Rp {{ number_format($booking->total_price, 0, ',', '.') }}</span>
+                        <span>Rp {{ number_format($booking->total_price - $booking->extra_bed_price, 0, ',', '.') }}</span>
                     </div>
+
+                    {{-- Subtotal Extra Bed --}}
+                    @if ($booking->extra_bed)
+                        <div class="flex justify-between text-sm text-gray-600">
+                            <span>Extra Bed Subtotal ({{ $booking->total_nights }} malam)</span>
+                            <span>Rp {{ number_format($booking->extra_bed_price, 0, ',', '.') }}</span>
+                        </div>
+                    @endif
 
                     {{-- Subtotal F&B --}}
                     @php

@@ -152,6 +152,17 @@ There Is An Input Error:
                     </div>
                 </div>
 
+                <div class="mt-2 pt-2 border-t border-gray-100 dark:border-white/5">
+                    <label class="inline-flex items-center gap-2 cursor-pointer py-1">
+                        <input type="checkbox" name="extra_bed" id="extra_bed" value="1"
+                               {{ old('extra_bed') ? 'checked' : '' }}
+                               class="rounded border-gray-300 dark:border-white/10 text-blue-600 focus:ring-blue-500/30 bg-white dark:bg-white/5 transition duration-200">
+                        <span class="text-xs font-semibold text-gray-500 dark:text-white/40 uppercase tracking-wider">
+                            Add Extra Bed (+ Rp 100.000 / Night)
+                        </span>
+                    </label>
+                </div>
+
                 <div>
                     <label class="block text-xs font-semibold text-gray-500 dark:text-white/40 uppercase tracking-wider mb-2">
                         Note <span class="text-gray-300 dark:text-white/20 font-normal normal-case">(Optional)</span>
@@ -308,6 +319,8 @@ There Is An Input Error:
 let roomPricePerNight = 0;
 let totalNights       = 0;
 let fnbTotal          = 0;
+let extraBedChecked   = false;
+const extraBedPricePerNight = 100000;
 
 // ── Format Rupiah ──────────────────────────────
 function fmt(num) {
@@ -320,6 +333,7 @@ function updateRoomSummary() {
     const opt    = sel.options[sel.selectedIndex];
     const checkIn  = document.getElementById('check_in').value;
     const checkOut = document.getElementById('check_out').value;
+    extraBedChecked = document.getElementById('extra_bed').checked;
 
     roomPricePerNight = parseFloat(opt.dataset.price || 0);
     const roomNumber  = opt.dataset.number || '';
@@ -336,10 +350,21 @@ function updateRoomSummary() {
                 `Kamar ${roomNumber} — ${roomType}`;
             document.getElementById('summary_dates').textContent =
                 `${checkIn} s/d ${checkOut}`;
-            document.getElementById('summary_nights').textContent =
-                `${totalNights} malam × ${fmt(roomPricePerNight)}`;
-            document.getElementById('summary_room_price').textContent =
-                fmt(roomPricePerNight * totalNights);
+            
+            const roomTotal = roomPricePerNight * totalNights;
+            const extraBedTotal = extraBedChecked ? (extraBedPricePerNight * totalNights) : 0;
+
+            if (extraBedChecked) {
+                document.getElementById('summary_nights').innerHTML =
+                    `${totalNights} malam × ${fmt(roomPricePerNight)}<br><span class="text-[11px] text-blue-500 font-normal">+ Extra Bed: ${totalNights} malam × ${fmt(extraBedPricePerNight)}</span>`;
+                document.getElementById('summary_room_price').innerHTML =
+                    `${fmt(roomTotal)}<br><span class="text-[11px] text-blue-500 font-normal">${fmt(extraBedTotal)}</span>`;
+            } else {
+                document.getElementById('summary_nights').textContent =
+                    `${totalNights} malam × ${fmt(roomPricePerNight)}`;
+                document.getElementById('summary_room_price').textContent =
+                    fmt(roomTotal);
+            }
         } else {
             totalNights = 0;
             document.getElementById('summary_nights').textContent = '';
@@ -403,12 +428,14 @@ function updateSummary() {
 // ── Update grand total ─────────────────────────
 function updateGrandTotal() {
     const roomTotal = roomPricePerNight * totalNights;
-    document.getElementById('summary_grand_total').textContent = fmt(roomTotal + fnbTotal);
+    const extraBedTotal = extraBedChecked ? (extraBedPricePerNight * totalNights) : 0;
+    document.getElementById('summary_grand_total').textContent = fmt(roomTotal + extraBedTotal + fnbTotal);
 }
 
 // ── Event listeners ────────────────────────────
 document.getElementById('room_select').addEventListener('change', updateRoomSummary);
 document.getElementById('check_in').addEventListener('change', updateRoomSummary);
 document.getElementById('check_out').addEventListener('change', updateRoomSummary);
+document.getElementById('extra_bed').addEventListener('change', updateRoomSummary);
 </script>
 @endpush

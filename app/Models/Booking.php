@@ -24,15 +24,19 @@ class Booking extends Model
         'paid_at',
         'handled_by',
         'notes',
+        'extra_bed',
+        'extra_bed_price',
     ];
 
     protected function casts(): array
     {
         return [
-            'check_in'       => 'date',
-            'check_out'      => 'date',
-            'total_price'    => 'decimal:2',
-            'paid_at'        => 'datetime',
+            'check_in' => 'date',
+            'check_out' => 'date',
+            'total_price' => 'decimal:2',
+            'paid_at' => 'datetime',
+            'extra_bed' => 'boolean',
+            'extra_bed_price' => 'decimal:2',
         ];
     }
 
@@ -69,8 +73,9 @@ class Booking extends Model
     // Auto-generate booking code
     public static function generateCode(): string
     {
-        $date  = now()->format('Ymd');
+        $date = now()->format('Ymd');
         $count = self::whereDate('created_at', today())->count() + 1;
-        return 'B-' . $date . '-' . str_pad($count, 3, '0', STR_PAD_LEFT);
+
+        return 'B-'.$date.'-'.str_pad($count, 3, '0', STR_PAD_LEFT);
     }
 }

@@ -60,12 +60,43 @@
                 </div>
 
                 <div class="grid grid-cols-2 gap-x-8 gap-y-4 text-sm">
-                    @foreach ([['Nama Tamu', $booking->guest_name], ['Kamar', $booking->room->room_number . ' — ' . $booking->room->roomType->name], ['Email', $booking->guest_email], ['WhatsApp', $booking->guest_phone], ['Check-in', $booking->check_in->format('d M Y')], ['Check-out', $booking->check_out->format('d M Y')], ['Durasi', $booking->total_nights . ' malam'], ['Harga Kamar', 'Rp ' . number_format($booking->total_price, 0, ',', '.')]] as [$label, $value])
-                        <div>
-                            <p class="text-xs text-gray-400 dark:text-white/30 mb-0.5">{{ $label }}</p>
-                            <p class="font-medium text-gray-800 dark:text-white">{{ $value }}</p>
-                        </div>
-                    @endforeach
+                    <div>
+                        <p class="text-xs text-gray-400 dark:text-white/30 mb-0.5">Nama Tamu</p>
+                        <p class="font-medium text-gray-800 dark:text-white">{{ $booking->guest_name }}</p>
+                    </div>
+                    <div>
+                        <p class="text-xs text-gray-400 dark:text-white/30 mb-0.5">Kamar</p>
+                        <p class="font-medium text-gray-800 dark:text-white">{{ $booking->room->room_number . ' — ' . $booking->room->roomType->name }}</p>
+                    </div>
+                    <div>
+                        <p class="text-xs text-gray-400 dark:text-white/30 mb-0.5">Email</p>
+                        <p class="font-medium text-gray-800 dark:text-white">{{ $booking->guest_email }}</p>
+                    </div>
+                    <div>
+                        <p class="text-xs text-gray-400 dark:text-white/30 mb-0.5">WhatsApp</p>
+                        <p class="font-medium text-gray-800 dark:text-white">{{ $booking->guest_phone }}</p>
+                    </div>
+                    <div>
+                        <p class="text-xs text-gray-400 dark:text-white/30 mb-0.5">Check-in</p>
+                        <p class="font-medium text-gray-800 dark:text-white">{{ $booking->check_in->format('d M Y') }}</p>
+                    </div>
+                    <div>
+                        <p class="text-xs text-gray-400 dark:text-white/30 mb-0.5">Check-out</p>
+                        <p class="font-medium text-gray-800 dark:text-white">{{ $booking->check_out->format('d M Y') }}</p>
+                    </div>
+                    <div>
+                        <p class="text-xs text-gray-400 dark:text-white/30 mb-0.5">Durasi</p>
+                        <p class="font-medium text-gray-800 dark:text-white">{{ $booking->total_nights }} malam</p>
+                    </div>
+                    <div>
+                        <p class="text-xs text-gray-400 dark:text-white/30 mb-0.5">Harga Kamar</p>
+                        <p class="font-medium text-gray-800 dark:text-white">
+                            Rp {{ number_format($booking->total_price - $booking->extra_bed_price, 0, ',', '.') }}
+                            @if($booking->extra_bed)
+                                <span class="text-xs text-blue-500 font-normal block mt-0.5">+ Extra Bed: Rp {{ number_format($booking->extra_bed_price, 0, ',', '.') }}</span>
+                            @endif
+                        </p>
+                    </div>
                 </div>
 
                 @if ($booking->notes)
@@ -85,7 +116,10 @@
                     <div>
                         <span class="text-sm font-semibold text-gray-800 dark:text-white">Grand Total</span>
                         <p class="text-xs text-gray-400 dark:text-white/30 mt-0.5">
-                            Room: Rp {{ number_format($booking->total_price, 0, ',', '.') }}
+                            Room: Rp {{ number_format($booking->total_price - $booking->extra_bed_price, 0, ',', '.') }}
+                            @if ($booking->extra_bed)
+                                + Extra Bed: Rp {{ number_format($booking->extra_bed_price, 0, ',', '.') }}
+                            @endif
                             @if ($fnbSubtotal > 0)
                                 + F&B: Rp {{ number_format($fnbSubtotal, 0, ',', '.') }}
                             @endif
@@ -200,6 +234,21 @@
                 </form>
             </div>
 
+            @if ($booking->status !== 'checked_out' && $booking->status !== 'cancelled')
+            <div class="bg-white dark:bg-white/4 border border-gray-100 dark:border-white/8 rounded-2xl p-5">
+                <h3 class="text-sm font-semibold text-gray-800 dark:text-white mb-4">Perpanjang Menginap</h3>
+                <button onclick="document.getElementById('modal-extend').classList.remove('hidden')"
+                    class="w-full py-2.5 rounded-xl text-sm font-semibold text-white hover:opacity-90 transition-opacity flex items-center justify-center gap-2"
+                    style="background: #1e3a5f">
+                    <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                    </svg>
+                    Extend Stay
+                </button>
+            </div>
+            @endif
+ 
             <a href="{{ route('admin.bookings.invoice', $booking) }}" target="_blank"
                 class="flex items-center justify-center gap-2 w-full py-3 rounded-xl text-sm font-medium
                   border border-blue-200 dark:border-blue-500/30 text-blue-600 dark:text-blue-400
@@ -282,6 +331,46 @@
                         Add To Invoice
                     </button>
                     <button type="button" onclick="document.getElementById('modal-fnb').classList.add('hidden')"
+                        class="flex-1 py-2.5 rounded-xl text-sm font-medium text-gray-600 dark:text-white/60
+                               border border-gray-200 dark:border-white/10 hover:bg-gray-50 dark:hover:bg-white/5">
+                       Cancel
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    {{-- Modal Perpanjang Booking --}}
+    <div id="modal-extend" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4">
+        <div class="absolute inset-0 bg-black/60 backdrop-blur-sm"
+            onclick="document.getElementById('modal-extend').classList.add('hidden')"></div>
+        <div
+            class="relative bg-white dark:bg-[#1A1535] border border-gray-100 dark:border-white/10
+                rounded-2xl p-6 w-full max-w-md shadow-2xl">
+            <h3 class="text-sm font-semibold text-gray-800 dark:text-white mb-4">
+                Extend Stay — Booking {{ $booking->booking_code }}
+            </h3>
+            <form method="POST" action="{{ route('admin.bookings.extend', $booking) }}">
+                @csrf
+                <div class="mb-5">
+                    <label class="block text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">
+                        New Checkout Date
+                    </label>
+                    <input type="date" name="new_check_out" id="new_check_out"
+                        value="{{ old('new_check_out', $booking->check_out->copy()->addDay()->format('Y-m-d')) }}"
+                        min="{{ $booking->check_out->copy()->addDay()->format('Y-m-d') }}"
+                        class="w-full px-4 py-2.5 rounded-xl text-sm border border-gray-200 dark:border-white/10
+                               bg-white dark:bg-white/5 text-gray-800 dark:text-white
+                               focus:outline-none focus:ring-2 focus:ring-blue-500/30 transition duration-200">
+                </div>
+
+                <div class="flex gap-3 pt-2 border-t border-gray-100 dark:border-white/8">
+                    <button type="submit"
+                        class="flex-1 py-2.5 rounded-xl text-sm font-semibold text-white hover:opacity-90"
+                        style="background: #1d4ed8">
+                        Extend
+                    </button>
+                    <button type="button" onclick="document.getElementById('modal-extend').classList.add('hidden')"
                         class="flex-1 py-2.5 rounded-xl text-sm font-medium text-gray-600 dark:text-white/60
                                border border-gray-200 dark:border-white/10 hover:bg-gray-50 dark:hover:bg-white/5">
                        Cancel
