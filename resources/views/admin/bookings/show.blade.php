@@ -236,7 +236,7 @@
 
             @if ($booking->status !== 'checked_out' && $booking->status !== 'cancelled')
             <div class="bg-white dark:bg-white/4 border border-gray-100 dark:border-white/8 rounded-2xl p-5">
-                <h3 class="text-sm font-semibold text-gray-800 dark:text-white mb-4">Perpanjang Menginap</h3>
+                <h3 class="text-sm font-semibold text-gray-800 dark:text-white mb-4">Extend Stay</h3>
                 <button onclick="document.getElementById('modal-extend').classList.remove('hidden')"
                     class="w-full py-2.5 rounded-xl text-sm font-semibold text-white hover:opacity-90 transition-opacity flex items-center justify-center gap-2"
                     style="background: #1e3a5f">
@@ -248,7 +248,7 @@
                 </button>
             </div>
             @endif
- 
+
             <a href="{{ route('admin.bookings.invoice', $booking) }}" target="_blank"
                 class="flex items-center justify-center gap-2 w-full py-3 rounded-xl text-sm font-medium
                   border border-blue-200 dark:border-blue-500/30 text-blue-600 dark:text-blue-400
