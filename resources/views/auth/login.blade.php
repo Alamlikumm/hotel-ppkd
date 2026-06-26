@@ -143,7 +143,7 @@
 
         <div class="fade-up-4">
             <p class="text-white/20 text-xs">
-                © 2026 Dido's Hotel. All rights reserved.
+                © 2026 Dido's Hotel. All Rights Reserved.
             </p>
         </div>
     </div>

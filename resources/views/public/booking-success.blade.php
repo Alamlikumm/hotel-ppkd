@@ -79,7 +79,7 @@
     {{-- Content --}}
     <div class="max-w-md mx-auto px-6 pt-28 pb-16 w-full flex-1 flex flex-col justify-center">
         <div class="scale-in bg-white/5 backdrop-blur-2xl border border-white/10 rounded-3xl p-8 shadow-2xl text-center">
-            
+
             {{-- Success Animation --}}
             <div class="w-20 h-20 rounded-full mx-auto mb-6 flex items-center justify-center bg-green-500/10 border-2 border-green-500/30">
                 <svg class="w-10 h-10" viewBox="0 0 40 40" fill="none">
@@ -152,7 +152,7 @@
     {{-- Footer --}}
     <footer class="py-6 text-center border-t border-white/5">
         <p class="text-white/20 text-xs">
-            © 2026 Dido's Hotel. All rights reserved.
+            © 2026 Dido's Hotel. All Rights Reserved.
         </p>
     </footer>
 </body>
