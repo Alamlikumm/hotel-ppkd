@@ -259,26 +259,31 @@ There Is An Input Error:
                       style="background: #1d4ed8">4</span>
                 Metode Pembayaran <span class="text-red-400">*</span>
             </h3>
+            @php
+                $oldPayment = old('payment_method', 'cash');
+                $cashActive = $oldPayment === 'cash';
+                $transferActive = $oldPayment === 'transfer';
+            @endphp
             <div class="grid grid-cols-2 gap-4">
-                <label class="cursor-pointer">
-                    <input type="radio" name="payment_method" value="cash" class="sr-only peer" {{ old('payment_method', 'cash') === 'cash' ? 'checked' : '' }}>
-                    <div class="flex flex-col items-center justify-center p-4 rounded-xl border border-gray-200 dark:border-white/10 bg-white dark:bg-white/5 hover:border-blue-500 dark:hover:border-blue-500/50 peer-checked:border-blue-600 peer-checked:bg-blue-50/20 dark:peer-checked:bg-blue-500/10 text-gray-500 dark:text-white/60 peer-checked:text-blue-600 transition duration-200">
-                        <svg class="w-8 h-8 mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                        </svg>
-                        <span class="text-sm font-semibold">Cash (Tunai)</span>
-                    </div>
-                </label>
+                <div onclick="selectPaymentMethod('cash')" id="card-cash" 
+                     class="flex flex-col items-center justify-center p-4 rounded-xl border cursor-pointer transition duration-200 
+                            {{ $cashActive ? 'border-blue-600 text-blue-600 bg-blue-50 dark:bg-blue-500/10' : 'border-gray-200 dark:border-white/10 bg-white dark:bg-white/5 text-gray-500 dark:text-white/60' }}">
+                    <svg class="w-8 h-8 mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    <span class="text-sm font-semibold">Cash (Tunai)</span>
+                </div>
 
-                <label class="cursor-pointer">
-                    <input type="radio" name="payment_method" value="transfer" class="sr-only peer" {{ old('payment_method') === 'transfer' ? 'checked' : '' }}>
-                    <div class="flex flex-col items-center justify-center p-4 rounded-xl border border-gray-200 dark:border-white/10 bg-white dark:bg-white/5 hover:border-blue-500 dark:hover:border-blue-500/50 peer-checked:border-blue-600 peer-checked:bg-blue-50/20 dark:peer-checked:bg-blue-500/10 text-gray-500 dark:text-white/60 peer-checked:text-blue-600 transition duration-200">
-                        <svg class="w-8 h-8 mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
-                        </svg>
-                        <span class="text-sm font-semibold">Transfer Bank</span>
-                    </div>
-                </label>
+                <div onclick="selectPaymentMethod('transfer')" id="card-transfer" 
+                     class="flex flex-col items-center justify-center p-4 rounded-xl border cursor-pointer transition duration-200 
+                            {{ $transferActive ? 'border-blue-600 text-blue-600 bg-blue-50 dark:bg-blue-500/10' : 'border-gray-200 dark:border-white/10 bg-white dark:bg-white/5 text-gray-500 dark:text-white/60' }}">
+                    <svg class="w-8 h-8 mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
+                    </svg>
+                    <span class="text-sm font-semibold">Transfer Bank</span>
+                </div>
+
+                <input type="hidden" name="payment_method" id="payment_method_input" value="{{ $oldPayment }}">
             </div>
             @error('payment_method')
             <p class="mt-2 text-xs text-red-500">{{ $message }}</p>
@@ -470,5 +475,36 @@ document.getElementById('room_select').addEventListener('change', updateRoomSumm
 document.getElementById('check_in').addEventListener('change', updateRoomSummary);
 document.getElementById('check_out').addEventListener('change', updateRoomSummary);
 document.getElementById('extra_bed').addEventListener('change', updateRoomSummary);
+
+// ── Select Payment Method ──────────────────────
+function selectPaymentMethod(method) {
+    document.getElementById('payment_method_input').value = method;
+    
+    const cashCard = document.getElementById('card-cash');
+    const transferCard = document.getElementById('card-transfer');
+    
+    const activeClasses = ['border-blue-600', 'text-blue-600', 'bg-blue-50', 'dark:bg-blue-500/10'];
+    const inactiveClasses = ['border-gray-200', 'dark:border-white/10', 'bg-white', 'dark:bg-white/5', 'text-gray-500', 'dark:text-white/60'];
+    
+    if (method === 'cash') {
+        activeClasses.forEach(c => {
+            cashCard.classList.add(c);
+            transferCard.classList.remove(c);
+        });
+        inactiveClasses.forEach(c => {
+            cashCard.classList.remove(c);
+            transferCard.classList.add(c);
+        });
+    } else {
+        activeClasses.forEach(c => {
+            transferCard.classList.add(c);
+            cashCard.classList.remove(c);
+        });
+        inactiveClasses.forEach(c => {
+            transferCard.classList.remove(c);
+            cashCard.classList.add(c);
+        });
+    }
+}
 </script>
 @endpush
