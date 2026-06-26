@@ -96,7 +96,7 @@
                 <form method="POST" action="{{ route('admin.housekeeping.updateRoomStatus', $room) }}" class="flex-1">
                     @csrf
                     @method('PATCH')
-                    <input type="hidden" name="status" value="Available">
+                    <input type="hidden" name="status" value="available">
                     <input type="hidden" name="notes" value="The Room Has Been Cleaned And Is Ready For Use.">
                     <button type="submit" class="w-full py-2 rounded-xl text-xs font-semibold text-white bg-blue-600 hover:bg-blue-500 transition duration-200 active:scale-95 shadow-sm">
                         Finish Cleaning
