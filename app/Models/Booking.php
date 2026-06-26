@@ -75,7 +75,7 @@ class Booking extends Model
     public static function generateCode(): string
     {
         $date = now()->format('Ymd');
-        $count = self::whereDate('created_at', today())->count() + 1;
+        $count = self::withTrashed()->whereDate('created_at', today())->count() + 1;
 
         return 'B-'.$date.'-'.str_pad($count, 3, '0', STR_PAD_LEFT);
     }
