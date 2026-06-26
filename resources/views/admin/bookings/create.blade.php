@@ -251,6 +251,39 @@ There Is An Input Error:
             @endif
             @endforeach
         </div>
+
+        {{-- Step 4: Metode Pembayaran --}}
+        <div class="bg-white dark:bg-white/4 border border-gray-100 dark:border-white/8 rounded-2xl p-6">
+            <h3 class="text-sm font-semibold text-gray-800 dark:text-white mb-5 flex items-center gap-2">
+                <span class="w-6 h-6 rounded-lg flex items-center justify-center text-white text-xs font-bold"
+                      style="background: #1d4ed8">4</span>
+                Metode Pembayaran <span class="text-red-400">*</span>
+            </h3>
+            <div class="grid grid-cols-2 gap-4">
+                <label class="cursor-pointer">
+                    <input type="radio" name="payment_method" value="cash" class="sr-only peer" {{ old('payment_method', 'cash') === 'cash' ? 'checked' : '' }}>
+                    <div class="flex flex-col items-center justify-center p-4 rounded-xl border border-gray-200 dark:border-white/10 bg-white dark:bg-white/5 hover:border-blue-500 dark:hover:border-blue-500/50 peer-checked:border-blue-600 peer-checked:bg-blue-50/20 dark:peer-checked:bg-blue-500/10 text-gray-500 dark:text-white/60 peer-checked:text-blue-600 transition duration-200">
+                        <svg class="w-8 h-8 mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        <span class="text-sm font-semibold">Cash (Tunai)</span>
+                    </div>
+                </label>
+
+                <label class="cursor-pointer">
+                    <input type="radio" name="payment_method" value="transfer" class="sr-only peer" {{ old('payment_method') === 'transfer' ? 'checked' : '' }}>
+                    <div class="flex flex-col items-center justify-center p-4 rounded-xl border border-gray-200 dark:border-white/10 bg-white dark:bg-white/5 hover:border-blue-500 dark:hover:border-blue-500/50 peer-checked:border-blue-600 peer-checked:bg-blue-50/20 dark:peer-checked:bg-blue-500/10 text-gray-500 dark:text-white/60 peer-checked:text-blue-600 transition duration-200">
+                        <svg class="w-8 h-8 mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
+                        </svg>
+                        <span class="text-sm font-semibold">Transfer Bank</span>
+                    </div>
+                </label>
+            </div>
+            @error('payment_method')
+            <p class="mt-2 text-xs text-red-500">{{ $message }}</p>
+            @enderror
+        </div>
     </div>
 
     {{-- Kanan: Ringkasan --}}

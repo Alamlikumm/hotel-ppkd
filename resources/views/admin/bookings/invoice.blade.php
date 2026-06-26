@@ -116,6 +116,11 @@
                             Paid: {{ $booking->paid_at->format('d M Y, H:i') }}
                         </p>
                     @endif
+                    @if ($booking->payment_status === 'paid' && $booking->payment_method)
+                        <p class="text-gray-400 text-xs mt-1">
+                            Method: {{ ucfirst($booking->payment_method) }}
+                        </p>
+                    @endif
                     <p class="text-gray-400 text-xs mt-1">
                         Processed by: {{ $booking->handler?->name ?? 'Sistem' }}
                     </p>
@@ -280,6 +285,14 @@
     </div>
 
     <script>
+        // Auto-print if query parameter 'print' is present
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.has('print') || urlParams.get('print') === '1') {
+            window.onload = function() {
+                window.print();
+            }
+        }
+
         async function downloadPdf() {
             // Sembunyikan tombol, print sebagai PDF
             const noprint = document.querySelectorAll('.no-print');

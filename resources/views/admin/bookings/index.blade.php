@@ -106,6 +106,16 @@
                                           transition-colors duration-150">
                                     Details
                                 </a>
+                                <a href="{{ route('admin.bookings.invoice', $booking) }}?print=1" target="_blank"
+                                   class="text-xs px-3 py-1.5 rounded-lg border border-blue-200 dark:border-blue-500/20
+                                          text-blue-600 dark:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-500/10
+                                          transition-colors duration-150 flex items-center gap-1">
+                                    <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
+                                    </svg>
+                                    Print
+                                </a>
                                  <a href="{{ route('admin.bookings.destroy', $booking) }}"
                                      data-confirm-delete="true"
                                      class="text-xs px-3 py-1.5 rounded-lg border border-red-200 dark:border-red-500/20

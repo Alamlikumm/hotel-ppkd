@@ -56,6 +56,11 @@
                         <span class="text-xs px-3 py-1.5 rounded-full font-semibold {{ $payStyle }}">
                             {{ $booking->payment_status === 'paid' ? '✓ Lunas' : 'Belum Bayar' }}
                         </span>
+                        @if ($booking->payment_status === 'paid' && $booking->payment_method)
+                            <span class="text-xs px-3 py-1.5 rounded-full font-semibold bg-blue-50 dark:bg-blue-500/15 text-blue-700 dark:text-blue-300">
+                                {{ ucfirst($booking->payment_method) }}
+                            </span>
+                        @endif
                     </div>
                 </div>
 
@@ -210,22 +215,42 @@
                 <h3 class="text-sm font-semibold text-gray-800 dark:text-white mb-4">Status Updates</h3>
                 <form method="POST" action="{{ route('admin.bookings.updateStatus', $booking) }}" class="space-y-3">
                     @csrf @method('PATCH')
-                    <select name="status"
-                        class="w-full px-3 py-2.5 rounded-xl text-sm border border-gray-200 dark:border-white/10
-                               bg-white dark:bg-white/5 text-gray-800 dark:text-white
-                               focus:outline-none focus:ring-2 focus:ring-blue-500/30">
-                        @foreach ([
-            'pending' => 'Pending',
-            'confirmed' => 'Confirmed',
-            'checked_in' => 'Checked In',
-            'checked_out' => 'Checked Out',
-            'cancelled' => 'Cancelled',
-        ] as $val => $label)
-                            <option value="{{ $val }}" {{ $booking->status === $val ? 'selected' : '' }}>
-                                {{ $label }}
-                            </option>
-                        @endforeach
-                    </select>
+                    <div class="space-y-1">
+                        <label class="block text-xs font-semibold text-gray-400 dark:text-white/30 uppercase tracking-wider">
+                            Status
+                        </label>
+                        <select name="status" id="status-select"
+                            class="w-full px-3 py-2.5 rounded-xl text-sm border border-gray-200 dark:border-white/10
+                                   bg-white dark:bg-white/5 text-gray-800 dark:text-white
+                                   focus:outline-none focus:ring-2 focus:ring-blue-500/30">
+                            @foreach ([
+                'pending' => 'Pending',
+                'confirmed' => 'Confirmed',
+                'checked_in' => 'Checked In',
+                'checked_out' => 'Checked Out',
+                'cancelled' => 'Cancelled',
+            ] as $val => $label)
+                                <option value="{{ $val }}" {{ $booking->status === $val ? 'selected' : '' }}>
+                                    {{ $label }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                    <div class="space-y-1 {{ in_array($booking->status, ['confirmed', 'checked_out']) ? '' : 'hidden' }}" id="payment-method-container">
+                        <label class="block text-xs font-semibold text-gray-400 dark:text-white/30 uppercase tracking-wider">
+                            Metode Pembayaran
+                        </label>
+                        <select name="payment_method"
+                            class="w-full px-3 py-2.5 rounded-xl text-sm border border-gray-200 dark:border-white/10
+                                   bg-white dark:bg-white/5 text-gray-800 dark:text-white
+                                   focus:outline-none focus:ring-2 focus:ring-blue-500/30">
+                            <option value="">— Pilih Metode —</option>
+                            <option value="cash" {{ $booking->payment_method === 'cash' ? 'selected' : '' }}>Cash</option>
+                            <option value="transfer" {{ $booking->payment_method === 'transfer' ? 'selected' : '' }}>Transfer</option>
+                        </select>
+                    </div>
+
                     <button type="submit"
                         class="w-full py-2.5 rounded-xl text-sm font-semibold text-white hover:opacity-90 transition-opacity"
                         style="background: #1d4ed8">
@@ -249,7 +274,7 @@
             </div>
             @endif
 
-            <a href="{{ route('admin.bookings.invoice', $booking) }}" target="_blank"
+            <a href="{{ route('admin.bookings.invoice', $booking) }}?print=1" target="_blank"
                 class="flex items-center justify-center gap-2 w-full py-3 rounded-xl text-sm font-medium
                   border border-blue-200 dark:border-blue-500/30 text-blue-600 dark:text-blue-400
                   hover:bg-blue-50 dark:hover:bg-blue-500/10 transition-colors duration-150">
@@ -392,5 +417,14 @@
             input.value = val;
             document.getElementById('modal_qty_display_' + menuId).textContent = val;
         }
+
+        document.getElementById('status-select').addEventListener('change', function() {
+            const container = document.getElementById('payment-method-container');
+            if (this.value === 'confirmed' || this.value === 'checked_out') {
+                container.classList.remove('hidden');
+            } else {
+                container.classList.add('hidden');
+            }
+        });
     </script>
 @endpush

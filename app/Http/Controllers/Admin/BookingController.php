@@ -45,6 +45,7 @@ class BookingController extends Controller
             'check_out' => 'required|date|after:check_in',
             'notes' => 'nullable|string',
             'extra_bed' => 'nullable|boolean',
+            'payment_method' => 'required|in:cash,transfer',
             'fnb_items' => 'nullable|array',
             'fnb_items.*.menu_id' => 'exists:fnb_menus,id',
             // 'fnb_items.*.qty'      => 'integer|min:1',
@@ -75,6 +76,7 @@ class BookingController extends Controller
             'status' => 'confirmed', // resepsionis langsung confirmed
             'payment_status' => 'paid',
             'paid_at' => now(),
+            'payment_method' => $validated['payment_method'],
             'handled_by' => auth()->id(),
             'notes' => $validated['notes'] ?? null,
         ]);
@@ -111,18 +113,21 @@ class BookingController extends Controller
     {
         $request->validate([
             'status' => 'required|in:pending,confirmed,checked_in,checked_out,cancelled',
+            'payment_method' => 'nullable|required_if:status,confirmed,checked_out|in:cash,transfer',
         ]);
 
         $data = ['status' => $request->status];
 
         if ($request->status === 'confirmed') {
             $data['payment_status'] = 'paid';
-            $data['paid_at'] = now();
+            $data['paid_at'] = $booking->paid_at ?? now();
+            $data['payment_method'] = $request->payment_method ?? $booking->payment_method;
         }
 
         if ($request->status === 'checked_out') {
             $data['payment_status'] = 'paid';
-            $data['paid_at'] = now();
+            $data['paid_at'] = $booking->paid_at ?? now();
+            $data['payment_method'] = $request->payment_method ?? $booking->payment_method;
             $booking->room->update([
                 'status' => 'maintenance',
                 'notes' => 'Dirty - requires cleaning and checkout inspection.',
@@ -131,6 +136,10 @@ class BookingController extends Controller
 
         if ($request->status === 'cancelled') {
             $booking->room->update(['status' => 'available']);
+        }
+
+        if ($request->payment_method) {
+            $data['payment_method'] = $request->payment_method;
         }
 
         $booking->update($data);

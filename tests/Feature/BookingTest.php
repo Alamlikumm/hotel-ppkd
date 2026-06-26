@@ -29,6 +29,7 @@ test('receptionist can create booking with extra bed', function () {
             'check_in' => now()->format('Y-m-d'),
             'check_out' => now()->addDays(2)->format('Y-m-d'),
             'extra_bed' => '1',
+            'payment_method' => 'cash',
             'notes' => 'Some notes',
         ]);
 
@@ -68,6 +69,7 @@ test('receptionist can extend checkout date of a booking', function () {
         'status' => 'confirmed',
         'payment_status' => 'paid',
         'paid_at' => now(),
+        'payment_method' => 'cash',
         'handled_by' => $receptionist->id,
     ]);
 
