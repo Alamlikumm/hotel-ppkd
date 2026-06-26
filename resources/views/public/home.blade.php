@@ -248,7 +248,7 @@
 
                         <div class="absolute bottom-3 left-4">
                             <span class="text-xs px-2.5 py-1 rounded-full bg-blue-600/80 text-white font-medium">
-                                {{ $type->rooms_count }} rooms available
+                                {{ $type->rooms_count }} Rooms available
                             </span>
                         </div>
                     </div>
@@ -273,7 +273,7 @@
                                 <span class="text-xl font-bold text-blue-400">
                                     Rp {{ number_format($type->price_per_night, 0, ',', '.') }}
                                 </span>
-                                <span class="text-xs text-white/30">/night</span>
+                                <span class="text-xs text-white/30">/Night</span>
                             </div>
 
                             <a href="{{ route('rooms') }}"

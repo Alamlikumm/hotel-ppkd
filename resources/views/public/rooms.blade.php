@@ -99,10 +99,10 @@
                                 </span>
                             </div>
 
-                            @if($room->roomType->facilities)
+                            @if($type->facilities)
                                 <div class="flex flex-wrap gap-1 mb-4">
-                                    @foreach(array_slice($room->roomType->facilities, 0, 3) as $f)
-                                        <span class="text-[10px] px-2 py-0.5 rounded-md bg-white/5 text-white/40">{{ $f }}</span>
+                                    @foreach(array_slice($type->facilities, 0, 4) as $facility)
+                                        <span class="text-[10px] px-2 py-0.5 rounded-md bg-white/5 text-white/40">{{ $facility }}</span>
                                     @endforeach
                                 </div>
                             @endif

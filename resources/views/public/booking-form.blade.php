@@ -113,7 +113,7 @@
                             </span>
 
                             <span class="text-white/30 text-sm">
-                                /night
+                                /Night
                             </span>
                         </div>
                     </div>
