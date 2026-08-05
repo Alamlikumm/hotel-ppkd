@@ -15,9 +15,6 @@ use App\Http\Controllers\Public\HomeController;
 use Illuminate\Support\Facades\Route;
 
 // ── Halaman Publik ──
-Route::get('/', function () {
-    return view('welcome');
-})->name('home');
 
 // ── Auth (di-generate otomatis oleh Laravel Breeze) ──
 // require __DIR__.'/auth.php';

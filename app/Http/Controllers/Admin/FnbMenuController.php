@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\FnbCategory;
 use App\Models\FnbMenu;
 use Illuminate\Http\Request;
+use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -37,10 +38,7 @@ class FnbMenuController extends Controller
         ]);
 
         if ($request->hasFile('image')) {
-            $image = $request->file('image');
-            $filename = time().'_'.$image->getClientOriginalName();
-            $image->move(public_path('images/fnb'), $filename);
-            $validated['image'] = 'images/fnb/'.$filename;
+            $validated['image'] = $this->storeImage($request->file('image'));
         }
 
         FnbMenu::create([...$validated, 'created_by' => auth()->id()]);
@@ -62,18 +60,8 @@ class FnbMenuController extends Controller
         ]);
 
         if ($request->hasFile('image')) {
-            if ($fnbMenu->image) {
-                $oldPath = public_path($fnbMenu->image);
-                if (file_exists($oldPath) && is_file($oldPath)) {
-                    @unlink($oldPath);
-                } else {
-                    Storage::disk('public')->delete($fnbMenu->image);
-                }
-            }
-            $image = $request->file('image');
-            $filename = time().'_'.$image->getClientOriginalName();
-            $image->move(public_path('images/fnb'), $filename);
-            $validated['image'] = 'images/fnb/'.$filename;
+            $this->deleteImage($fnbMenu->image);
+            $validated['image'] = $this->storeImage($request->file('image'));
         }
 
         $fnbMenu->update($validated);
@@ -85,18 +73,35 @@ class FnbMenuController extends Controller
 
     public function destroy(FnbMenu $fnbMenu)
     {
-        if ($fnbMenu->image) {
-            $path = public_path($fnbMenu->image);
-            if (file_exists($path) && is_file($path)) {
-                @unlink($path);
-            } else {
-                Storage::disk('public')->delete($fnbMenu->image);
-            }
-        }
+        $this->deleteImage($fnbMenu->image);
         $fnbMenu->delete();
 
         Alert::success('Success', 'The Menu Has Been Successfully Deleted.');
 
         return back()->with('success', 'The Menu Has Been Successfully Deleted.');
+    }
+
+    private function storeImage(UploadedFile $image): string
+    {
+        $filename = time().'_'.$image->getClientOriginalName();
+
+        Storage::disk('images')->putFileAs('fnb', $image, $filename);
+
+        return 'images/fnb/'.$filename;
+    }
+
+    private function deleteImage(?string $image): void
+    {
+        if (! $image) {
+            return;
+        }
+
+        if (str_starts_with($image, 'images/')) {
+            Storage::disk('images')->delete('fnb/'.basename($image));
+
+            return;
+        }
+
+        Storage::disk('public')->delete($image);
     }
 }
