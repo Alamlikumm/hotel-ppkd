@@ -43,5 +43,8 @@ jobs:
           **/.git*/**
           **/node_modules/**
           **/tests/**
+          **/storage/**
+          **/bootstrap/cache/**
+          **/vendor/**
           .env.example
           README.md
